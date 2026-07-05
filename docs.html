@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Technical Documentation | JusDots</title>
+  <meta name="description"
+    content="In-depth technical documentation for JusBrowse and the JusDots ecosystem." />
+  <meta name="author" content="JusDots" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shubh72010.github.io/JusDots-Dev/docs.html" />
+  <meta property="og:title" content="Technical Documentation | JusDots" />
+  <meta property="og:description" content="In-depth technical documentation for JusBrowse and JusDots ecosystem." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="icon" href="JusDots.png" type="image/png">
+  <link rel="apple-touch-icon" href="JusDots.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav role="navigation" aria-label="Main navigation">
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="JusDots.png" alt="JusDots" class="logo-img"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="logo-ic" style="display:none">JD</div>
+      <div class="logo-tx">Jus<span>Dots</span></div>
+    </a>
+    <div class="nav-links" role="menubar">
+      <a href="index.html" role="menuitem">Home</a>
+      <a href="browse.html" role="menuitem">JusBrowse</a>
+      <a href="chat.html" role="menuitem">JusChatz</a>
+      <a href="notes.html" role="menuitem">DotNotes</a>
+      <a href="releases.html" role="menuitem">Releases</a>
+      <a href="docs.html" class="active" role="menuitem">Docs</a>
+      <a href="research.html" role="menuitem">Research</a>
+    </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="sun-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="moon-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+  </nav>
+
+  <div class="layout">
+    <main id="main-content" role="main">
+      <div class="stitle-mono">Documentation</div>
+      <div class="stitle">How it works</div>
+      <p style="color:var(--ink-muted);margin-bottom:32px;max-width:65ch">In-depth engineering guides for JusBrowse and the JusDots ecosystem.</p>
+
+      <div class="callout callout-info">
+        <p><strong>1. Core Mission.</strong> JusBrowse is an ultra-hardened Android browser designed to survive the infinite war against modern tracking (FingerprintJS v4, etc.). It treats privacy not just as a setting, but as a system-level engineering problem.</p>
+      </div>
+
+      <div class="rc open">
+        <div class="rh" onclick="tr(this)">
+          <div class="rhl"><span class="rv">Module 01</span><span class="ri"><span class="rn">The Network Surgeon (Layer 4/7)</span></span></div>
+          <span class="chev">▾</span>
+        </div>
+        <div class="rb">
+          <p style="margin-bottom:16px;">Standard browsers reveal themselves via HTTP headers. JusBrowse implements a custom interception layer to sanitize outgoing traffic:</p>
+          <ul>
+            <li><strong>X-Requested-With Stripping:</strong> Removes the identifying header that flags the app as a WebView.</li>
+            <li><strong>Protocol Alignment:</strong> Uses Google Cronet and OkHttp to support QUIC, HTTP/3, and Brotli, matching the network signature of a standalone Chrome browser.</li>
+            <li><strong>Surgical Interception:</strong> Manually re-executes requests without identifying markers, ensuring sites see a clean browser stack.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rc">
+        <div class="rh" onclick="tr(this)">
+          <div class="rhl"><span class="rv">Module 02</span><span class="ri"><span class="rn">Hardware Emulation (Pixel 8 Pro Identity)</span></span></div>
+          <span class="chev">▾</span>
+        </div>
+        <div class="rb">
+          <p style="margin-bottom:16px;">To prevent Uncanny Valley leaks where the device reports a mismatching identity, JusBrowse spoofs the hardware characteristics of the Google Pixel 8 Pro (Tensor G3):</p>
+          <table class="ct">
+            <tr><td><strong>CPU</strong></td><td>Spoofs <code>navigator.hardwareConcurrency</code> to report <strong>8 cores</strong>.</td></tr>
+            <tr><td><strong>RAM</strong></td><td>Spoofs <code>navigator.deviceMemory</code> to report <strong>12GB</strong>.</td></tr>
+            <tr><td><strong>GPU</strong></td><td>Overrides WebGL <code>getParameter</code> to report Google as vendor and Mali-G715 as renderer.</td></tr>
+            <tr><td><strong>APIs</strong></td><td>Blocks or spoofs Battery/Vibration APIs that could leak hardware health.</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="rc">
+        <div class="rh" onclick="tr(this)">
+          <div class="rhl"><span class="rv">Module 03</span><span class="ri"><span class="rn">Dynamic Fingerprint Resistance (Layer 7)</span></span></div>
+          <span class="chev">▾</span>
+        </div>
+        <div class="rb">
+          <p style="margin-bottom:16px;">Extensive JavaScript injection occurs at <code>Document-Start</code> to neuter tracking scripts:</p>
+          <div class="docs-grid" style="grid-template-columns: 1fr 1fr; gap: 1px;">
+            <div class="docs-card">
+              <h4>Canvas Jitter</h4>
+              <p>Injects seeded noise into ImageData to break persistent canvas hashes while maintaining visual quality.</p>
+            </div>
+            <div class="docs-card">
+              <h4>Audio Hardening</h4>
+              <p>Adds imperceptible jitter to AudioContext and Oscillator outputs to prevent acoustic fingerprinting.</p>
+            </div>
+            <div class="docs-card">
+              <h4>WebRTC Shielding</h4>
+              <p>Prevents IP leaks and identity probes by occluding candidate enumeration.</p>
+            </div>
+            <div class="docs-card">
+              <h4>Font / Screen Protection</h4>
+              <p>Limits fonts to a safe subset and buckets dimensions to standard mobile resolutions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rc">
+        <div class="rh" onclick="tr(this)">
+          <div class="rhl"><span class="rv">Architecture</span><span class="ri"><span class="rn">Architecture & Isolation</span></span></div>
+          <span class="chev">▾</span>
+        </div>
+        <div class="rb">
+          <ul>
+            <li><strong>OS-Level Isolation:</strong> Uses <code>WebView.setDataDirectorySuffix</code> linked to personas, ensuring cookies, cache, and LocalStorage are physically separated at the file system level.</li>
+            <li><strong>MVVM Architecture:</strong> Built with Jetpack Compose for a modern, reactive UI that manages multiple isolated WebView instances.</li>
+            <li><strong>Persistence:</strong> Uses Room and DataStore for secure, performance-conscious state management.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rc">
+        <div class="rh" onclick="tr(this)">
+          <div class="rhl"><span class="rv">Data</span><span class="ri"><span class="rn">Engine Effectiveness (Protection)</span></span></div>
+          <span class="chev">▾</span>
+        </div>
+        <div class="rb">
+          <div class="features" style="grid-template-columns:1fr 1fr;gap:1px">
+            <div class="feat">
+              <h3>Surgical Blocking</h3>
+              <p>Advanced sub-resource interception using <code>shouldInterceptRequest</code> to scrub tracking headers.</p>
+            </div>
+            <div class="feat">
+              <h3>Detection Resistance</h3>
+              <p>By aligning headers (sec-ch-ua) JusBrowse avoids common Version Mismatch flags.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stitle-mono" style="margin-top:64px">FAQ</div>
+      <div class="stitle">Got questions?</div>
+      <div class="docs-grid" style="grid-template-columns: 1fr;">
+        <div class="docs-card">
+          <h4>Why use WebView instead of a custom Chromium fork?</h4>
+          <p>A full Chromium fork adds ~300MB to the binary and massive RAM overhead. WebView allows us to use the system's security patches while the Network Surgeon removes markers.</p>
+        </div>
+        <div class="docs-card">
+          <h4>Does seeded noise break websites?</h4>
+          <p>No. The jitter is mathematically calculated to be imperceptible to humans but sufficient to change the checksum (hash) that trackers look for.</p>
+        </div>
+        <div class="docs-card">
+          <h4>Is this browser 100% untraceable?</h4>
+          <p>No browser is 100% untraceable, but JusBrowse removes the low-hanging fruit and many mid-level fingerprinting vectors standard browsers ignore.</p>
+        </div>
+        <div class="docs-card" style="background:var(--accent);color:var(--accent-ink);border:none;">
+          <h4 style="color:var(--accent-ink)">What is Boomer Mode?</h4>
+          <p style="color:rgba(255,255,255,0.85)">It booms the UI elements — popups are intentionally annoying.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer role="contentinfo">
+    <span>&copy; 2026 JusDots &middot; Open Source</span>
+    <span><a href="https://github.com/shubh72010" target="_blank">GitHub</a> &middot;
+      <a href="https://github.com/shubh72010/JusBrowse/releases" target="_blank">JusBrowse</a> &middot;
+      <a href="https://github.com/shubh72010/DotNotes" target="_blank">DotNotes</a></span>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

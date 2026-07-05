@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>JusDots | Privacy-First Android Apps</title>
+  <meta name="description"
+    content="JusDots - Developer portal for privacy-first Android apps. Browse privately with JusBrowse, chat anonymously with JusChatz, and take notes with DotNotes." />
+  <meta name="keywords"
+    content="android apps, privacy browser, note taking, encrypted chat, android webview, privacy first" />
+  <meta name="author" content="JusDots" />
+  <meta name="theme-color" content="#0a0a0b" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shubh72010.github.io/JusDots-Dev/" />
+  <meta property="og:title" content="JusDots | Privacy-First Android Apps" />
+  <meta property="og:description" content="Open source privacy-focused Android apps: JusBrowse, JusChatz, DotNotes" />
+  <meta property="og:image" content="https://shubh72010.github.io/JusDots-Dev/assets/og-image.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="JusDots | Privacy-First Android Apps" />
+  <meta name="twitter:description" content="Open source privacy-focused Android apps: JusBrowse, JusChatz, DotNotes" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap">
+  <link rel="icon" href="JusDots.png" type="image/png">
+  <link rel="apple-touch-icon" href="JusDots.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Mobile Search Bar -->
+  <div class="mobile-search">
+    <input type="search" id="mobile-search-input" placeholder="Search apps, releases, docs..." aria-label="Search"
+      oninput="handleMobileSearch(this.value)">
+  </div>
+
+  <nav role="navigation" aria-label="Main navigation">
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="#" class="logo" onclick="sp('home')">
+      <img src="JusDots.png" alt="JusDots" class="logo-img"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="logo-ic" style="display:none">JD</div>
+      <div class="logo-tx">Jus<span>Dots</span></div>
+    </a>
+
+    <div class="nav-search">
+      <input type="search" id="nav-search-input" placeholder="Search..." aria-label="Search"
+        oninput="handleNavSearch(this.value)" onfocus="showNavSearchResults()" onblur="hideNavSearchResults()">
+      <div class="nav-search-results" id="nav-search-results"></div>
+    </div>
+
+    <div class="nav-links" role="menubar">
+      <div class="nav-dropdown">
+        <a class="nav-dropdown-toggle" role="menuitem">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          Apps
+        </a>
+        <div class="nav-dropdown-menu">
+          <a onclick="sp('home')" role="menuitem">Home</a>
+          <a onclick="sp('browse')" role="menuitem">JusBrowse</a>
+          <a onclick="sp('chat')" role="menuitem">JusChatz</a>
+          <a onclick="sp('notes')" role="menuitem">DotNotes</a>
+        </div>
+      </div>
+      <a onclick="sp('releases')" role="menuitem">Releases</a>
+      <a onclick="sp('docs')" role="menuitem">Docs</a>
+      <a onclick="sp('research')" role="menuitem">Research</a>
+    </div>
+  </nav>
+
+  <div class="layout">
+    <main id="main-content" role="main">
+      <div class="search-box">
+        <input type="search" id="global-search" placeholder="Search apps, docs, releases..." aria-label="Search">
+        <div class="search-results" id="search-results"></div>
+      </div>
+
+      <!-- ==================== HOME PAGE ==================== -->
+      <div class="page active" id="page-home">
+        <div class="hero reveal">
+          <div class="htag">Privacy-First Apps</div>
+          <h1>Open Source<br>Android Apps</h1>
+          <p>Secure, privacy-focused Android applications. All apps are open source, locally stored, and designed with your privacy in mind.</p>
+          <div class="hbtns">
+            <a class="btn bp" onclick="sp('releases')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+              </svg>
+              Download Apps
+            </a>
+            <a class="btn bs" href="https://github.com/shubh72010" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="stitle reveal">Our Apps</div>
+        <div class="app-grid reveal-stagger">
+          <div class="app-card" data-repo="shubh72010/JusBrowse" data-id="browse" data-color="browse">
+            <img src="JusBrowse.png" alt="JusBrowse" class="app-icon-img"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="app-icon browse" style="display:none">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h3>JusBrowse <span class="new-badge" style="display:none">NEW</span></h3>
+            <span class="tag privacy">Privacy</span>
+            <p>Privacy-first Android browser with fingerprint protection, tracker blocking, and minimal memory footprint.</p>
+            <div class="stats">
+              <div class="stat">
+                <div class="stat-n skeleton" id="stars-browse">--</div>
+                <div class="stat-l">Stars</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n" id="version-browse">25+</div>
+                <div class="stat-l">Releases</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n" id="size-browse">~25MB</div>
+                <div class="stat-l">APK Size</div>
+              </div>
+            </div>
+            <div class="actions">
+              <a class="btn bs" onclick="sp('browse')">Learn More</a>
+              <a class="btn br" id="download-browse" href="https://github.com/shubh72010/JusBrowse/releases" target="_blank">Download</a>
+            </div>
+          </div>
+
+          <div class="app-card" data-repo="R37BGXRPG/JusChatz_by_JusDots" data-id="chat" data-color="chat">
+            <div class="app-icon chat">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3>JusChatz <span class="new-badge" style="display:none">NEW</span></h3>
+            <span class="tag chat">Encrypted</span>
+            <p>Anonymous encrypted chat with no registration required. End-to-end encryption for all messages.</p>
+            <div class="stats">
+              <div class="stat">
+                <div class="stat-n skeleton" id="stars-chat">--</div>
+                <div class="stat-l">Stars</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n" id="version-chat">5+</div>
+                <div class="stat-l">Releases</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n" id="size-chat">~15MB</div>
+                <div class="stat-l">APK Size</div>
+              </div>
+            </div>
+            <div class="actions">
+              <a class="btn bs" onclick="sp('chat')">Learn More</a>
+              <a class="btn br" id="download-chat" href="https://github.com/R37BGXRPG/JusChatz_by_JusDots/releases" target="_blank">Download</a>
+            </div>
+          </div>
+
+          <div class="app-card" data-repo="shubh72010/DotNotes" data-id="notes" data-color="notes">
+            <img src="DotNotes.png" alt="DotNotes" class="app-icon-img"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="app-icon notes" style="display:none">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <h3>DotNotes <span class="new-badge" style="display:none">NEW</span></h3>
+            <span class="tag notes">Productivity</span>
+            <p>Modern note-taking app with folder organization, secret notes, and checklist support.</p>
+            <div class="stats">
+              <div class="stat">
+                <div class="stat-n skeleton" id="stars-notes">--</div>
+                <div class="stat-l">Stars</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n" id="version-notes">9+</div>
+                <div class="stat-l">Releases</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n" id="size-notes">~8MB</div>
+                <div class="stat-l">APK Size</div>
+              </div>
+            </div>
+            <div class="actions">
+              <a class="btn bs" onclick="sp('notes')">Learn More</a>
+              <a class="btn br" id="download-notes" href="https://github.com/shubh72010/DotNotes/releases" target="_blank">Download</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="stitle reveal">Why JusDots?</div>
+        <div class="bento reveal-stagger">
+          <div class="bento-cell featured">
+            <div class="bento-icon teal">
+              <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h3>Privacy First</h3>
+            <p>All data stored locally. No tracking, no telemetry, no accounts required. Your data never leaves your device.</p>
+          </div>
+          <div class="bento-cell">
+            <div class="bento-icon green">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </div>
+            <h3>Open Source</h3>
+            <p>All apps are open source. Inspect the code, contribute, or fork.</p>
+          </div>
+          <div class="bento-cell">
+            <div class="bento-icon amber">
+              <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3>Lightweight</h3>
+            <p>Minimal APK sizes. Built with modern Android architecture.</p>
+          </div>
+          <div class="bento-cell">
+            <div class="bento-icon blue">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </div>
+            <h3>Material Design</h3>
+            <p>Clean, modern UI following Material Design 3 guidelines.</p>
+          </div>
+          <div class="bento-cell">
+            <div class="bento-icon rose">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Secure</h3>
+            <p>Biometric authentication, encryption, and secure storage.</p>
+          </div>
+        </div>
+
+        <div class="cta-section reveal">
+          <div class="cta-card">
+            <div class="cta-content">
+              <h3>Get Started</h3>
+              <p>Download any app and experience privacy-first Android applications.</p>
+            </div>
+            <div class="cta-actions">
+              <a class="btn bp" onclick="sp('releases')">View All Releases</a>
+              <a class="btn bs" onclick="sp('docs')">Read Docs</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== JUSBROWSE PAGE ==================== -->
+      <div class="page" id="page-browse">
+        <div class="hero reveal">
+          <img src="JusBrowse.png" alt="JusBrowse" class="hero-logo" onerror="this.style.display='none'">
+          <div class="htag">Privacy Browser</div>
+          <h1>Jus<span>Browse</span></h1>
+          <p>A privacy-first Android browser featuring advanced fingerprinting protection, tracker blocking, and minimal memory footprint.</p>
+          <div class="hbtns">
+            <a class="btn bp" href="https://github.com/shubh72010/JusBrowse/releases" target="_blank">Download APK</a>
+            <a class="btn bs" href="https://github.com/shubh72010/JusBrowse" target="_blank">GitHub</a>
+          </div>
+        </div>
+
+        <div class="stitle">Key Features</div>
+        <div class="features">
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+            <h3>Fingerprint Protection</h3>
+            <p>Advanced Fake Mode with hardware spoofing, canvas noise, WebRTC shielding.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          </span>
+            <h3>Tracker Blocking</h3>
+            <p>Built-in ad/tracker blocking using EasyList with DNS-level filtering.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </span>
+            <h3>Privacy Mode</h3>
+            <p>Incognito browsing with data isolation and automatic storage clearing.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </span>
+            <h3>Lightweight</h3>
+            <p>Built on Android WebView. ~25MB APK size, low memory usage.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </span>
+            <h3>DNS over HTTPS</h3>
+            <p>Custom DoH URLs with secure DNS resolution.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          </span>
+            <h3>Fullscreen Video</h3>
+            <p>Enhanced media playback with fullscreen support.</p>
+          </div>
+        </div>
+
+        <div class="stitle">App Showcase</div>
+        <div class="screenshot-gallery">
+          <div class="screenshot-item">
+            <img src="assets/JusBrowse.png" alt="JusBrowse Screenshot">
+          </div>
+        </div>
+
+        <div class="stitle">Technical Specs</div>
+        <div class="ct">
+          <table>
+            <tbody>
+              <tr><td style="width:40%">Min Android</td><td>API 29 (Android 10)</td></tr>
+              <tr><td>APK Size</td><td>~25MB</td></tr>
+              <tr><td>Engine</td><td>Android WebView</td></tr>
+              <tr><td>Language</td><td>Kotlin</td></tr>
+              <tr><td>License</td><td>GPL-3.0</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="app-releases">
+          <div class="stitle">Recent Releases <span class="release-count" id="count-browse">--</span></div>
+          <div class="release-mini-list" id="releases-browse">
+            <div class="release-mini">
+              <div class="meta"><span class="version skeleton" style="width:80px">Loading...</span></div>
+            </div>
+          </div>
+          <a class="view-all" onclick="sp('releases')">View All Releases</a>
+        </div>
+
+        <div class="github-widget" style="margin-top:24px">
+          <div class="github-widget-header">
+            <h3>JusBrowse on GitHub</h3>
+            <span class="github-stars skeleton" id="stars-widget-browse">&#11088; --</span>
+          </div>
+          <a class="btn bs" href="https://github.com/shubh72010/JusBrowse" target="_blank">View Repository</a>
+          <a class="btn bp" id="download-widget-browse" href="https://github.com/shubh72010/JusBrowse/releases" target="_blank">Download APK</a>
+        </div>
+      </div>
+
+      <!-- ==================== JUSCHATZ PAGE ==================== -->
+      <div class="page" id="page-chat">
+        <div class="hero reveal">
+          <div class="htag">Encrypted Chat</div>
+          <h1>Jus<span>Chatz</span></h1>
+          <p>Anonymous encrypted chat app. No registration, no tracking, no data retention. Your conversations stay private.</p>
+          <div class="hbtns">
+            <a class="btn bp" href="https://github.com/R37BGXRPG/JusChatz_by_JusDots/releases" target="_blank">Download APK</a>
+            <a class="btn bs" href="https://github.com/R37BGXRPG/JusChatz_by_JusDots" target="_blank">GitHub</a>
+          </div>
+        </div>
+
+        <div class="stitle">Key Features</div>
+        <div class="features">
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </span>
+            <h3>E2E Encryption</h3>
+            <p>AES-256-GCM encryption. Only you and your partner can read messages.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+            <h3>No Registration</h3>
+            <p>No phone, no email, no account. Just install and chat.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          </span>
+            <h3>No Data Retention</h3>
+            <p>Messages not stored on servers. Exist only on devices.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </span>
+            <h3>Local Storage</h3>
+            <p>SQLCipher encrypted local storage. Clear anytime.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </span>
+            <h3>Anonymous Rooms</h3>
+            <p>Create/join rooms with unique codes. No participant tracking.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </span>
+            <h3>Material Design</h3>
+            <p>Modern UI following Material Design 3.</p>
+          </div>
+        </div>
+
+        <div class="stitle">Technical Specs</div>
+        <div class="ct">
+          <table>
+            <tbody>
+              <tr><td style="width:40%">Min Android</td><td>API 24 (Android 7.0)</td></tr>
+              <tr><td>APK Size</td><td>~15MB</td></tr>
+              <tr><td>Encryption</td><td>AES-256-GCM</td></tr>
+              <tr><td>Key Exchange</td><td>Diffie-Hellman</td></tr>
+              <tr><td>Protocol</td><td>WebSocket / MQTT</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="app-releases">
+          <div class="stitle">Recent Releases <span class="release-count" id="count-chat">--</span></div>
+          <div class="release-mini-list" id="releases-chat">
+            <div class="release-mini">
+              <div class="meta"><span class="version skeleton" style="width:80px">Loading...</span></div>
+            </div>
+          </div>
+          <a class="view-all" onclick="sp('releases')">View All Releases</a>
+        </div>
+
+        <div class="github-widget" style="margin-top:24px">
+          <div class="github-widget-header">
+            <h3>JusChatz on GitHub</h3>
+            <span class="github-stars skeleton" id="stars-widget-chat">&#11088; --</span>
+          </div>
+          <a class="btn bs" href="https://github.com/R37BGXRPG/JusChatz_by_JusDots" target="_blank">View Repository</a>
+          <a class="btn bp" id="download-widget-chat" href="https://github.com/R37BGXRPG/JusChatz_by_JusDots/releases" target="_blank">Download APK</a>
+        </div>
+      </div>
+
+      <!-- ==================== DOTNOTES PAGE ==================== -->
+      <div class="page" id="page-notes">
+        <div class="hero reveal">
+          <img src="DotNotes.png" alt="DotNotes" class="hero-logo" onerror="this.style.display='none'">
+          <div class="htag">Note Taking</div>
+          <h1>Dot<span>Notes</span></h1>
+          <p>A modern, privacy-focused note-taking app for Android. Organize with folders, secure with biometrics, and create rich checklists.</p>
+          <div class="hbtns">
+            <a class="btn bp" href="https://github.com/shubh72010/DotNotes/releases" target="_blank">Download APK</a>
+            <a class="btn bs" href="https://github.com/shubh72010/DotNotes" target="_blank">GitHub</a>
+          </div>
+        </div>
+
+        <div class="stitle">Key Features</div>
+        <div class="features">
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          </span>
+            <h3>Folder Organization</h3>
+            <p>Group notes into custom folders with rename/remove support.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </span>
+            <h3>Secret Notes</h3>
+            <p>Biometrically secured private notes. Your sensitive data stays protected.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </span>
+            <h3>Dynamic Checklists</h3>
+            <p>Create and reorder items with smooth drag-and-drop support.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </span>
+            <h3>Image Integration</h3>
+            <p>Attach images to notes for better visual context.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </span>
+            <h3>Pin & Share</h3>
+            <p>Keep important notes at top and easily share content.</p>
+          </div>
+          <div class="feat"><span class="feat-i">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </span>
+            <h3>Customization</h3>
+            <p>Dark, Light, and System themes with animation controls.</p>
+          </div>
+        </div>
+
+        <div class="stitle">App Showcase</div>
+        <div class="screenshot-gallery">
+          <div class="screenshot-item"><img src="assets/DN1.webp" alt="DotNotes Screenshot 1"></div>
+          <div class="screenshot-item"><img src="assets/DN2.webp" alt="DotNotes Screenshot 2"></div>
+          <div class="screenshot-item"><img src="assets/DN3.webp" alt="DotNotes Screenshot 3"></div>
+          <div class="screenshot-item"><img src="assets/DN4.webp" alt="DotNotes Screenshot 4"></div>
+        </div>
+
+        <div class="stitle">Technical Specs</div>
+        <div class="ct">
+          <table>
+            <tbody>
+              <tr><td style="width:40%">Min Android</td><td>API 24 (Android 7.0)</td></tr>
+              <tr><td>APK Size</td><td>~8MB</td></tr>
+              <tr><td>UI Framework</td><td>Jetpack Compose</td></tr>
+              <tr><td>Database</td><td>Room Persistence</td></tr>
+              <tr><td>Architecture</td><td>MVVM</td></tr>
+              <tr><td>License</td><td>GPL-3.0</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="app-releases">
+          <div class="stitle">Recent Releases <span class="release-count" id="count-notes">--</span></div>
+          <div class="release-mini-list" id="releases-notes">
+            <div class="release-mini">
+              <div class="meta"><span class="version skeleton" style="width:80px">Loading...</span></div>
+            </div>
+          </div>
+          <a class="view-all" onclick="sp('releases')">View All Releases</a>
+        </div>
+
+        <div class="github-widget" data-repo="shubh72010/DotNotes">
+          <div class="github-widget-header">
+            <h3>DotNotes on GitHub</h3>
+            <span class="github-stars skeleton" id="stars-widget-notes">&#11088; --</span>
+          </div>
+          <a class="btn bs" href="https://github.com/shubh72010/DotNotes" target="_blank">View Repository</a>
+          <a class="btn bp" id="download-widget-notes" href="https://github.com/shubh72010/DotNotes/releases" target="_blank">Download APK</a>
+        </div>
+      </div>
+
+      <!-- ==================== RELEASES PAGE ==================== -->
+      <div class="page" id="page-releases">
+        <div class="stitle">All Releases <span class="release-count" id="total-release-count">--</span>
+          <button class="refresh-btn" onclick="GitHubAPI.refresh()" title="Refresh releases">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            Refresh
+          </button>
+        </div>
+
+        <div class="filter-tabs" id="filter-tabs">
+          <div class="filter-tab active" data-filter="all" onclick="filterReleases('all')">All <span class="count" id="count-all">--</span></div>
+          <div class="filter-tab" data-filter="JusBrowse" onclick="filterReleases('JusBrowse')">JusBrowse <span class="count" id="count-JusBrowse">--</span></div>
+          <div class="filter-tab" data-filter="JusChatz" onclick="filterReleases('JusChatz')">JusChatz <span class="count" id="count-JusChatz">--</span></div>
+          <div class="filter-tab" data-filter="DotNotes" onclick="filterReleases('DotNotes')">DotNotes <span class="count" id="count-DotNotes">--</span></div>
+        </div>
+
+        <div class="release-search-wrap">
+          <input type="text" class="release-search" id="release-search" placeholder="Search releases..." aria-label="Search releases" oninput="searchReleases(this.value)">
+        </div>
+
+        <div class="sort-wrap">
+          <select class="sort-select" id="release-sort" onchange="sortReleases(this.value)">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+          </select>
+        </div>
+
+        <div class="rlist" id="releases-container">
+          <div class="rc open">
+            <div class="rh" role="button" tabindex="0" aria-expanded="true">
+              <div class="rhl"><span class="rv skeleton" style="width:80px;height:24px">Loading...</span>
+                <div class="ri">
+                  <div class="rn skeleton" style="width:200px;height:16px">Fetching releases...</div>
+                  <div class="rd skeleton" style="width:100px;height:12px;margin-top:8px"></div>
+                </div>
+              </div>
+              <div class="rmeta"><span class="chev">&#9662;</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== DOCS PAGE ==================== -->
+      <div class="page" id="page-docs">
+        <div class="stitle">Technical Documentation</div>
+        <p style="color:var(--tx2);margin-bottom:28px;font-size:14px;">In-depth engineering guides for JusBrowse and the JusDots ecosystem.</p>
+
+        <div class="hero" style="margin-bottom:28px;border-left:3px solid var(--ac);">
+          <h3 style="color:var(--ac);margin-bottom:8px;font-size:18px;">1. Core Mission</h3>
+          <p style="line-height:1.7;font-size:14px;">JusBrowse is an ultra-hardened Android browser designed to survive the "infinite war" against modern tracking (FingerprintJS v4, etc.). It treats privacy not just as a setting, but as a system-level engineering problem.</p>
+        </div>
+
+        <div class="rc open" style="margin-bottom:20px;">
+          <div class="rh" onclick="tr(this)">
+            <div class="rhl"><span class="rv">Module 01</span><span class="ri"><span class="rn">The "Network Surgeon" (Layer 4/7)</span></span></div>
+            <span class="chev">&#9662;</span>
+          </div>
+          <div class="rb">
+            <p style="margin-bottom:14px;font-size:13px;color:var(--tx2);line-height:1.7;">Standard browsers reveal themselves via HTTP headers. JusBrowse implements a custom interception layer to sanitize outgoing traffic:</p>
+            <ul style="line-height:1.8;padding-left:20px;color:var(--tx2);font-size:13px;">
+              <li><strong>X-Requested-With Stripping:</strong> Removes the identifying header that flags the app as a WebView.</li>
+              <li><strong>Protocol Alignment:</strong> Uses Google Cronet and OkHttp to support QUIC, HTTP/3, and Brotli, matching the network signature of a standalone Chrome browser.</li>
+              <li><strong>Surgical Interception:</strong> Manually re-executes requests without identifying markers, ensuring sites see a "clean" browser stack.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rc" style="margin-bottom:20px;">
+          <div class="rh" onclick="tr(this)">
+            <div class="rhl"><span class="rv">Module 02</span><span class="ri"><span class="rn">Hardware Emulation (Pixel 8 Pro Identity)</span></span></div>
+            <span class="chev">&#9662;</span>
+          </div>
+          <div class="rb">
+            <p style="margin-bottom:14px;font-size:13px;color:var(--tx2);line-height:1.7;">To prevent "Uncanny Valley" leaks where the device reports a mismatching identity, JusBrowse spoofs the hardware characteristics of the Google Pixel 8 Pro (Tensor G3):</p>
+            <table class="ct">
+              <tr><td><strong>CPU</strong></td><td>Spoofs <code>navigator.hardwareConcurrency</code> to report <strong>8 cores</strong>.</td></tr>
+              <tr><td><strong>RAM</strong></td><td>Spoofs <code>navigator.deviceMemory</code> to report <strong>12GB</strong>.</td></tr>
+              <tr><td><strong>GPU</strong></td><td>Overrides WebGL <code>getParameter</code> to report "Google" as vendor and "Mali-G715" as renderer.</td></tr>
+              <tr><td><strong>APIs</strong></td><td>Blocks or spoofs Battery/Vibration APIs that could leak hardware health.</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="rc" style="margin-bottom:20px;">
+          <div class="rh" onclick="tr(this)">
+            <div class="rhl"><span class="rv">Module 03</span><span class="ri"><span class="rn">Dynamic Fingerprint Resistance (Layer 7)</span></span></div>
+            <span class="chev">&#9662;</span>
+          </div>
+          <div class="rb">
+            <p style="margin-bottom:14px;font-size:13px;color:var(--tx2);line-height:1.7;">Extensive JavaScript injection occurs at <code>Document-Start</code> to neuter tracking scripts:</p>
+            <div class="docs-grid" style="grid-template-columns:1fr 1fr;gap:12px;">
+              <div class="docs-card" style="padding:16px;">
+                <h4 style="color:var(--ac);margin-bottom:4px;font-size:13px;">Canvas Jitter</h4>
+                <p style="font-size:12px;">Injects seeded noise into ImageData to break persistent canvas hashes while maintaining visual quality.</p>
+              </div>
+              <div class="docs-card" style="padding:16px;">
+                <h4 style="color:var(--ac);margin-bottom:4px;font-size:13px;">Audio Hardening</h4>
+                <p style="font-size:12px;">Adds imperceptible jitter to AudioContext and Oscillator outputs to prevent acoustic fingerprinting.</p>
+              </div>
+              <div class="docs-card" style="padding:16px;">
+                <h4 style="color:var(--ac);margin-bottom:4px;font-size:13px;">WebRTC Shielding</h4>
+                <p style="font-size:12px;">Prevents IP leaks and identity probes by occluding candidate enumeration.</p>
+              </div>
+              <div class="docs-card" style="padding:16px;">
+                <h4 style="color:var(--ac);margin-bottom:4px;font-size:13px;">Font/Screen Protection</h4>
+                <p style="font-size:12px;">Limits fonts to a "safe subset" and buckets dimensions to standard mobile resolutions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rc" style="margin-bottom:20px;">
+          <div class="rh" onclick="tr(this)">
+            <div class="rhl"><span class="rv">Architecture</span><span class="ri"><span class="rn">Architecture & Isolation</span></span></div>
+            <span class="chev">&#9662;</span>
+          </div>
+          <div class="rb">
+            <ul style="line-height:2;padding-left:20px;color:var(--tx2);font-size:13px;">
+              <li><strong>OS-Level Isolation:</strong> Uses <code>WebView.setDataDirectorySuffix</code> linked to personas, ensuring that cookies, cache, and LocalStorage are physically separated at the file system level.</li>
+              <li><strong>MVVM Architecture:</strong> Built with Jetpack Compose for a modern, reactive UI that manages multiple isolated WebView instances ("Tabs").</li>
+              <li><strong>Persistence:</strong> Uses Room and DataStore for secure, performance-conscious state management.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rc" style="margin-bottom:20px;">
+          <div class="rh" onclick="tr(this)">
+            <div class="rhl"><span class="rv">Data</span><span class="ri"><span class="rn">Engine Effectiveness (Protection)</span></span></div>
+            <span class="chev">&#9662;</span>
+          </div>
+          <div class="rb">
+            <div class="features" style="gap:12px;">
+              <div class="feat" style="padding:16px;">
+                <h4 style="color:var(--gr);font-size:13px;">Surgical Blocking</h4>
+                <p style="font-size:12px;">Advanced sub-resource interception using <code>shouldInterceptRequest</code> to scrub tracking headers.</p>
+              </div>
+              <div class="feat" style="padding:16px;">
+                <h4 style="color:var(--ac);font-size:13px;">Detection Resistance</h4>
+                <p style="font-size:12px;">By aligning headers (sec-ch-ua) JusBrowse avoids common "Version Mismatch" flags.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stitle" style="margin-top:40px">FAQ</div>
+        <div class="docs-grid" style="grid-template-columns:1fr;gap:12px;">
+          <div class="docs-card" style="background:var(--bg-raised);">
+            <h4 style="color:var(--ac);margin-bottom:6px;">Q: Why use WebView instead of a custom Chromium fork?</h4>
+            <p style="font-size:13px;color:var(--tx2);">A full Chromium fork adds ~300MB to the binary and massive RAM overhead. WebView allows us to use the system's security patches while the "Network Surgeon" removes markers.</p>
+          </div>
+          <div class="docs-card" style="background:var(--bg-raised);">
+            <h4 style="color:var(--ac);margin-bottom:6px;">Q: Does "Seeded Noise" break websites?</h4>
+            <p style="font-size:13px;color:var(--tx2);">No. The jitter is mathematically calculated to be imperceptible to humans but sufficient to change the checksum (hash) that trackers look for.</p>
+          </div>
+          <div class="docs-card" style="background:var(--bg-raised);">
+            <h4 style="color:var(--ac);margin-bottom:6px;">Q: Is this browser 100% untraceable?</h4>
+            <p style="font-size:13px;color:var(--tx2);">No browser is 100% untraceable, but JusBrowse removes the "Low Hanging Fruit" and many mid-level fingerprinting vectors standard browsers ignore.</p>
+          </div>
+          <div class="docs-card" style="background:var(--ac);color:var(--bg);">
+            <h4 style="color:var(--bg);margin-bottom:6px;">Q: What is "Boomer Mode"?</h4>
+            <p style="font-size:13px;color:rgba(10,10,11,0.8);">It booms the UI elements (popups are annoying).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== RESEARCH PAGE ==================== -->
+      <div class="page" id="page-research">
+        <div class="stitle">Research Notes</div>
+        <p style="color:var(--tx2);margin-bottom:28px;font-size:14px;">Technical notes from JusDots development.</p>
+
+        <div id="research-main">
+          <div class="docs-grid">
+            <div class="docs-card" onclick="sr('ja4')" style="cursor:pointer;">
+              <h3><span>&#128272;</span> JA4 Fingerprinting</h3>
+              <p>Modular, human-readable method for identifying clients based on TLS handshakes. Designed to replace JA3.</p>
+            </div>
+            <div class="docs-card" onclick="sr('fake-mode')" style="cursor:pointer;">
+              <h3><span>&#128737;</span> Fake Mode Research</h3>
+              <p>Digital identity hijacking protection via hardware spoofing, canvas noise, and WebRTC shielding.</p>
+            </div>
+            <div class="docs-card" onclick="sr('webview-perf')" style="cursor:pointer;">
+              <h3><span>&#128202;</span> WebView Performance</h3>
+              <p>Native Rendering vs. Custom Chromium Engines. Analyzing the 15-22% speed gap.</p>
+            </div>
+            <div class="docs-card" onclick="sr('tracker-blocking')" style="cursor:pointer;">
+              <h3><span>&#128683;</span> Tracker Blocking</h3>
+              <p>Effectiveness of the "Surgical" Engine. ~85% tracker reduction analysis.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- JA4 RESEARCH DETAIL VIEW -->
+        <div class="research-detail" id="research-detail-ja4" style="display:none;animation:fadeUp 0.4s ease;">
+          <div style="margin-bottom:20px;">
+            <a onclick="sp('research')" class="view-all" style="cursor:pointer;display:inline-flex;flex-direction:row-reverse;gap:8px;">Back to Research</a>
+          </div>
+          <div class="stitle">JA4 Fingerprinting</div>
+          <div class="hero" style="padding:28px;margin-bottom:28px;border-left:3px solid var(--ac);">
+            <p style="line-height:1.7;font-size:14px;">
+              <strong>JA4 Fingerprinting</strong> is a modular, human-readable method for identifying clients (like browsers, bots, or malware) based on how they initiate a secure connection. Unlike its predecessor, which produced a single fragile hash, JA4 splits the fingerprint into three distinct parts (a_b_c) and sorting and simplifying the data to remain stable even when technical details change randomly.
+            </p>
+          </div>
+          <div class="rc open" style="margin-bottom:28px;">
+            <div class="rh" onclick="tr(this)">
+              <div class="rhl"><span class="rv">Section 1</span><span class="ri"><span class="rn">The Anatomy of a JA4 Fingerprint</span></span></div>
+              <span class="chev">&#9662;</span>
+            </div>
+            <div class="rb">
+              <p style="margin:14px 0;line-height:1.7;font-size:13px;color:var(--tx2);">A JA4 fingerprint is a 36-character string divided into three sections: <strong>a_b_c</strong>.</p>
+              <div style="text-align:center;margin:20px 0;">
+                <img src="assets/ja4_anatomy.png" alt="JA4 Anatomy Diagram" style="width:100%;max-width:800px;border-radius:var(--radius);border:1px solid var(--border);">
+                <p style="font-size:11px;color:var(--tx3);margin-top:8px;font-family:var(--font-mono);">JA4 Fingerprint Structure Overview</p>
+              </div>
+              <h4 style="color:var(--ac);margin:28px 0 10px;font-size:15px;">Part A: The Readable Header (Plaintext)</h4>
+              <p style="margin-bottom:14px;color:var(--tx2);font-size:13px;">Captures high-level behavior. For example: <code style="background:var(--ac-dim);padding:3px 8px;border-radius:4px;color:var(--ac);font-family:var(--font-mono);">t13d1516h2</code></p>
+              <div style="text-align:center;margin:20px 0;">
+                <img src="assets/ja4_part_a.png" alt="JA4 Part A Breakdown" style="width:100%;max-width:700px;border-radius:var(--radius);border:1px solid var(--border);">
+                <p style="font-size:11px;color:var(--tx3);margin-top:8px;font-family:var(--font-mono);">Part A Header Segments</p>
+              </div>
+              <table class="ct">
+                <tr><th>Segment</th><th>Meaning</th></tr>
+                <tr><td><strong>t</strong></td><td>Protocol (t=TCP, q=QUIC)</td></tr>
+                <tr><td><strong>13</strong></td><td>TLS Version (13=TLS 1.3, 12=TLS 1.2)</td></tr>
+                <tr><td><strong>d</strong></td><td>SNI Type (d=Domain, i=IP)</td></tr>
+                <tr><td><strong>15</strong></td><td>Number of Cipher Suites (2 digits)</td></tr>
+                <tr><td><strong>16</strong></td><td>Number of Extensions (2 digits)</td></tr>
+                <tr><td><strong>h2</strong></td><td>ALPN &#8212; e.g., "h2" for HTTP/2</td></tr>
+              </table>
+              <h4 style="color:var(--ac);margin:28px 0 10px;font-size:15px;">Part B: Cipher Hash (Truncated SHA256)</h4>
+              <p style="color:var(--tx2);font-size:13px;">A 12-character hash of the <strong>sorted</strong> list of Cipher Suites.</p>
+              <div style="background:rgba(52,211,153,0.06);border-left:3px solid var(--gr);padding:12px 16px;margin:14px 0;border-radius:0 8px 8px 0;">
+                <p style="font-size:12px;color:var(--tx);font-style:italic;"><strong>Critical Improvement:</strong> Unlike JA3, JA4 sorts the ciphers before hashing. This prevents "Cipher Stunting" or randomization (common in Chrome) from changing the fingerprint.</p>
+              </div>
+              <h4 style="color:var(--ac);margin:28px 0 10px;font-size:15px;">Part C: Extension Hash (Truncated SHA256)</h4>
+              <p style="color:var(--tx2);font-size:13px;">A 12-character hash of the <strong>sorted</strong> list of TLS Extensions. This section often acts as the true "signature" of the client's SSL stack (e.g., OpenSSL vs. Windows SChannel).</p>
+            </div>
+          </div>
+          <div class="rc" style="margin-bottom:28px;">
+            <div class="rh" onclick="tr(this)">
+              <div class="rhl"><span class="rv">Section 2</span><span class="ri"><span class="rn">Evolution: Why JA3 Failed</span></span></div>
+              <span class="chev">&#9662;</span>
+            </div>
+            <div class="rb">
+              <p style="margin:14px 0;color:var(--tx2);line-height:1.7;font-size:13px;">Modern browsers like Chrome began randomizing the order of their TLS extensions (Grease), causing a single browser version to generate millions of different JA3 hashes, making detection pipelines unusable.</p>
+              <table class="ct">
+                <tr><th>Feature</th><th>JA3 (Legacy)</th><th>JA4 (Modern)</th></tr>
+                <tr><td><strong>Format</strong></td><td>Single MD5 Hash (32 chars)</td><td>Modular a_b_c String (36 chars)</td></tr>
+                <tr><td><strong>Readability</strong></td><td>Opaque (Unreadable)</td><td>Transparent (Part A is plaintext)</td></tr>
+                <tr><td><strong>Ordering</strong></td><td>Exact order (Fragile)</td><td>Sorted (Resistant)</td></tr>
+                <tr><td><strong>False Positives</strong></td><td>High</td><td>Low (Fuzzy matching possible)</td></tr>
+              </table>
+              <h4 style="color:var(--ac);margin:28px 0 10px;font-size:15px;">The "JA4+" Suite</h4>
+              <p style="color:var(--tx2);font-size:13px;">JA4 is part of a larger suite designed to correlate data across different layers of the OSI model:</p>
+              <div style="text-align:center;margin:20px 0;">
+                <img src="assets/ja4_suite.png" alt="JA4+ Suite Ecosystem" style="width:100%;max-width:600px;border-radius:var(--radius);border:1px solid var(--border);">
+                <p style="font-size:11px;color:var(--tx3);margin-top:8px;font-family:var(--font-mono);">JA4+ Suite Ecosystem Visualization</p>
+              </div>
+              <ul style="line-height:2;padding-left:20px;color:var(--tx2);font-size:13px;">
+                <li><strong style="color:var(--tx);">JA4S (Server):</strong> Fingerprints the server's response to identify server software.</li>
+                <li><strong style="color:var(--tx);">JA4H (HTTP):</strong> Fingerprints HTTP headers and cookie structures.</li>
+                <li><strong style="color:var(--tx);">JA4L (Latency):</strong> Measures latency to infer physical distance or detect proxies.</li>
+                <li><strong style="color:var(--tx);">JA4X (X.509):</strong> Fingerprints the SSL certificate itself.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="rc" style="margin-bottom:28px;">
+            <div class="rh" onclick="tr(this)">
+              <div class="rhl"><span class="rv">Section 3</span><span class="ri"><span class="rn">Security Use Cases</span></span></div>
+              <span class="chev">&#9662;</span>
+            </div>
+            <div class="rb">
+              <div class="docs-grid" style="grid-template-columns:1fr;gap:12px;margin-top:14px;">
+                <div class="docs-card" style="background:var(--ac-glow);">
+                  <h4 style="margin-bottom:6px;color:var(--ac);font-size:13px;">1. Bot & Scraper Detection</h4>
+                  <p style="font-size:12px;">User-Agents can lie, but TLS handshakes rarely do. If a request claims to be Chrome but the JA4 matches a Python library, it is an immediate red flag.</p>
+                </div>
+                <div class="docs-card" style="background:rgba(52,211,153,0.06);">
+                  <h4 style="margin-bottom:6px;color:var(--gr);font-size:13px;">2. C2 (Command & Control) Identification</h4>
+                  <p style="font-size:12px;">Malware families (like Cobalt Strike) often use hard-coded TLS libraries. Security teams block based on JA4 signatures that persist across IP rotations.</p>
+                </div>
+                <div class="docs-card" style="background:rgba(248,113,113,0.06);">
+                  <h4 style="margin-bottom:6px;color:var(--rd);font-size:13px;">3. Session Hijacking Prevention</h4>
+                  <p style="font-size:12px;">Platforms detect if a session cookie is used by a different JA4 fingerprint, implying account compromise or cookie theft, triggering immediate invalidation.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="stitle" style="margin-top:40px">Sources & Further Reading</div>
+          <div class="ct" style="padding:20px;">
+            <ul style="list-style:none;padding:0;">
+              <li style="margin-bottom:14px;font-size:13px;">&#128279; <a href="https://security.googlecloudcommunity.com/community-blog-42/ja4-fingerprinting-in-gti-deep-dive-6043" target="_blank" style="color:var(--ac);text-decoration:underline;">Google Cloud: JA4 Fingerprinting Deep Dive</a></li>
+              <li style="margin-bottom:14px;font-size:13px;">&#128279; <a href="https://zeek.org/2026/01/how-to-use-ja4-network-fingerprints-in-zeek/" target="_blank" style="color:var(--ac);text-decoration:underline;">Zeek: How to Use JA4 in Network Monitoring</a></li>
+              <li style="margin-bottom:14px;font-size:13px;">&#128279; <a href="https://medium.com/foxio/ja4-network-fingerprinting-9376fe9ca637" target="_blank" style="color:var(--ac);text-decoration:underline;">Medium (FoxIO): JA4 Network Fingerprinting Launch</a></li>
+              <li style="margin-bottom:14px;font-size:13px;">&#128279; <a href="https://github.com/FoxIO-LLC/ja4" target="_blank" style="color:var(--ac);text-decoration:underline;">GitHub: Official JA4 Reference Implementation</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- FAKE MODE RESEARCH DETAIL VIEW -->
+        <div class="research-detail" id="research-detail-fake-mode" style="display:none;animation:fadeUp 0.4s ease;">
+          <div style="margin-bottom:20px;">
+            <a onclick="sp('research')" class="view-all" style="cursor:pointer;display:inline-flex;flex-direction:row-reverse;gap:8px;">Back to Research</a>
+          </div>
+          <div class="stitle">Fake Mode: Digital Identity Hijacking & Fingerprint Protection</div>
+          <div class="hero" style="padding:28px;margin-bottom:28px;border-left:3px solid var(--ac);">
+            <p style="line-height:1.7;font-size:14px;">
+              <strong>Fake Mode</strong> is JusBrowse's multi-layered defense system that actively spoofs hardware and software identifiers to prevent websites from building a unique fingerprint of your device. It goes beyond simple User-Agent spoofing to intercept and modify low-level browser APIs.
+            </p>
+          </div>
+          <div class="rc open" style="margin-bottom:20px;">
+            <div class="rh" onclick="tr(this)">
+              <div class="rhl"><span class="rv">Core</span><span class="ri"><span class="rn">Hardware Identity Spoofing</span></span></div>
+              <span class="chev">&#9662;</span>
+            </div>
+            <div class="rb">
+              <p style="margin:14px 0;color:var(--tx2);line-height:1.7;font-size:13px;">JusBrowse spoofs the complete hardware identity of a Google Pixel 8 Pro to present a consistent and common device profile:</p>
+              <ul style="line-height:2;padding-left:20px;color:var(--tx2);font-size:13px;">
+                <li><strong>CPU Cores:</strong> Reports 8 cores (Tensor G3)</li>
+                <li><strong>Device Memory:</strong> Reports 12GB RAM</li>
+                <li><strong>GPU Renderer:</strong> Spoofs Mali-G715 (Pixel 8 Pro GPU)</li>
+                <li><strong>Screen Resolution:</strong> Buckets to standard mobile resolutions</li>
+                <li><strong>Timezone & Language:</strong> Can be randomized or fixed per persona</li>
+              </ul>
+            </div>
+          </div>
+          <div class="rc" style="margin-bottom:20px;">
+            <div class="rh" onclick="tr(this)">
+              <div class="rhl"><span class="rv">Canvas</span><span class="ri"><span class="rn">Canvas Fingerprint Protection</span></span></div>
+              <span class="chev">&#9662;</span>
+            </div>
+            <div class="rb">
+              <p style="margin:14px 0;color:var(--tx2);line-height:1.7;font-size:13px;">Canvas fingerprinting works by drawing invisible text or shapes and reading back the pixel data as a hash. JusBrowse defeats this by injecting imperceptible noise:</p>
+              <ul style="line-height:2;padding-left:20px;color:var(--tx2);font-size:13px;">
+                <li><strong>Seeded Noise Injection:</strong> Adds deterministic but invisible pixel-level noise to canvas output</li>
+                <li><strong>Per-Session Rotation:</strong> Noise seed changes per session, preventing cross-session tracking</li>
+                <li><strong>Visual Fidelity:</strong> Noise is mathematically bounded to be imperceptible to human eyes</li>
+              </ul>
+            </div>
+          </div>
+          <div class="rc" style="margin-bottom:20px;">
+            <div class="rh" onclick="tr(this)">
+              <div class="rhl"><span class="rv">Audio</span><span class="ri"><span class="rn">AudioContext Hardening</span></span></div>
+              <span class="chev">&#9662;</span>
+            </div>
+            <div class="rb">
+              <p style="margin:14px 0;color:var(--tx2);line-height:1.7;font-size:13px;">Audio fingerprinting analyzes the output of the Web Audio API to create a unique device signature:</p>
+              <ul style="line-height:2;padding-left:20px;color:var(--tx2);font-size:13px;">
+                <li><strong>Oscillator Jitter:</strong> Adds micro-level frequency variations to oscillator outputs</li>
+                <li><strong>AnalyserNode Perturbation:</strong> Modifies frequency domain data before it can be read</li>
+                <li><strong>Offline Context Isolation:</strong> Prevents offline audio context from being used for fingerprinting</li>
+              </ul>
+            </div>
+          </div>
+          <div class="rc" style="margin-bottom:20px;">
+            <div class="rh" onclick="tr(this)">
+              <div class="rhl"><span class="rv">WebRTC</span><span class="ri"><span class="rn">WebRTC IP Leak Prevention</span></span></div>
+              <span class="chev">&#9662;</span>
+            </div>
+            <div class="rb">
+              <ul style="line-height:2;padding-left:20px;color:var(--tx2);font-size:13px;">
+                <li><strong>ICE Candidate Filtering:</strong> Blocks private IP enumeration in WebRTC ICE candidates</li>
+                <li><strong>mDNS Anonymization:</strong> Forces mDNS candidates to prevent local network IP leaks</li>
+                <li><strong>SDP Manipulation:</strong> Sanitizes Session Description Protocol to remove identifying attributes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- WEBVIEW PERFORMANCE DETAIL VIEW -->
+        <div class="research-detail" id="research-detail-webview-perf" style="display:none;animation:fadeUp 0.4s ease;">
+          <div style="margin-bottom:20px;">
+            <a onclick="sp('research')" class="view-all" style="cursor:pointer;display:inline-flex;flex-direction:row-reverse;gap:8px;">Back to Research</a>
+          </div>
+          <div class="stitle">WebView Performance Analysis</div>
+          <div class="hero" style="padding:28px;margin-bottom:28px;border-left:3px solid var(--ac);">
+            <p style="line-height:1.7;font-size:14px;">
+              <strong>Performance Comparison</strong> between Android's native WebView and custom Chromium-based browsers. Understanding the 15-22% rendering speed gap and why JusBrowse chose WebView for its privacy architecture.
+            </p>
+          </div>
+          <div class="rc open" style="margin-bottom:20px;">
+            <div class="rh" onclick="tr(this)">
+              <div class="rhl"><span class="rv">Benchmarks</span><span class="ri"><span class="rn">Rendering Speed Comparison</span></span></div>
+              <span class="chev">&#9662;</span>
+            </div>
+            <div class="rb">
+              <table class="ct" style="margin:14px 0;">
+                <tr><th>Metric</th><th>Native WebView</th><th>Custom Chromium</th></tr>
+                <tr><td>Page Load (Speedometer 2.1)</td><td>100% (baseline)</td><td>115-122%</td></tr>
+                <tr><td>JavaScript Execution</td><td>100% (baseline)</td><td>108-115%</td></tr>
+                <tr><td>Memory Usage (idle)</td><td>~80MB</td><td>~180MB</td></tr>
+                <tr><td>APK Size</td><td>~25MB</td><td>~300MB+</td></tr>
+                <tr><td>Security Updates</td><td>Automatic (OS)</td><td>Manual (app updates)</td></tr>
+              </table>
+              <p style="color:var(--tx2);font-size:13px;line-height:1.7;">The 15-22% speed advantage of custom Chromium comes at the cost of 3.5x APK size, 2.2x memory overhead, and delayed security patches. For JusBrowse's privacy mission, the trade-off favors WebView.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRACKER BLOCKING DETAIL VIEW -->
+        <div class="research-detail" id="research-detail-tracker-blocking" style="display:none;animation:fadeUp 0.4s ease;">
+          <div style="margin-bottom:20px;">
+            <a onclick="sp('research')" class="view-all" style="cursor:pointer;display:inline-flex;flex-direction:row-reverse;gap:8px;">Back to Research</a>
+          </div>
+          <div class="stitle">Tracker Blocking: The Surgical Engine</div>
+          <div class="hero" style="padding:28px;margin-bottom:28px;border-left:3px solid var(--ac);">
+            <p style="line-height:1.7;font-size:14px;">
+              <strong>JusBrowse's "Surgical" Engine</strong> achieves approximately 85% tracker reduction through sub-resource interception at the Android WebView layer, combined with DNS-level filtering.
+            </p>
+          </div>
+          <div class="rc open" style="margin-bottom:20px;">
+            <div class="rh" onclick="tr(this)">
+              <div class="rhl"><span class="rv">Architecture</span><span class="ri"><span class="rn">Multi-Layer Blocking Pipeline</span></span></div>
+              <span class="chev">&#9662;</span>
+            </div>
+            <div class="rb">
+              <ul style="line-height:2;padding-left:20px;color:var(--tx2);font-size:13px;">
+                <li><strong>DNS Layer:</strong> Blocks known tracker domains before connection establishment</li>
+                <li><strong>HTTP Layer:</strong> Intercepts requests via <code>shouldInterceptRequest</code> to block tracking scripts, pixels, and beacons</li>
+                <li><strong>JavaScript Layer:</strong> Injects anti-fingerprinting scripts at document start</li>
+                <li><strong>EasyList Integration:</strong> Uses community-maintained filter lists for comprehensive coverage</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <footer>
+    <span>&copy; 2025 JusDots</span>
+    <a href="https://github.com/shubh72010" target="_blank">GitHub</a>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

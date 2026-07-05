@@ -1,0 +1,27 @@
+# Playwright test artifacts
+.playwright-mcp/
+
+# Test screenshots
+hero-test.png
+app-cards.png
+bento-features.png
+browse-page.png
+browse-features.png
+chat-page.png
+chat-hero.png
+chat-hero2.png
+notes-page.png
+releases-page.png
+docs-page.png
+research-page.png
+cta-footer.png
+tablet-hero.png
+tablet-cards.png
+tablet-bento.png
+mobile-hero.png
+mobile-cards.png
+mobile-cta.png
+
+# OS files
+.DS_Store
+Thumbs.db

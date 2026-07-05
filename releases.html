@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Releases | JusDots</title>
+  <meta name="description"
+    content="All releases for JusDots apps - JusBrowse, JusChatz, and DotNotes. Download the latest versions." />
+  <meta name="author" content="JusDots" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shubh72010.github.io/JusDots-Dev/releases.html" />
+  <meta property="og:title" content="Releases | JusDots" />
+  <meta property="og:description" content="All releases for JusDots privacy-first Android apps." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="icon" href="JusDots.png" type="image/png">
+  <link rel="apple-touch-icon" href="JusDots.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav role="navigation" aria-label="Main navigation">
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="JusDots.png" alt="JusDots" class="logo-img"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="logo-ic" style="display:none">JD</div>
+      <div class="logo-tx">Jus<span>Dots</span></div>
+    </a>
+    <div class="nav-links" role="menubar">
+      <a href="index.html" role="menuitem">Home</a>
+      <a href="browse.html" role="menuitem">JusBrowse</a>
+      <a href="chat.html" role="menuitem">JusChatz</a>
+      <a href="notes.html" role="menuitem">DotNotes</a>
+      <a href="releases.html" class="active" role="menuitem">Releases</a>
+      <a href="docs.html" role="menuitem">Docs</a>
+      <a href="research.html" role="menuitem">Research</a>
+    </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="sun-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="moon-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+  </nav>
+
+  <div class="layout">
+    <main id="main-content" role="main">
+      <div class="stitle">All Releases <span class="release-count" id="total-release-count">--</span> <button class="refresh-btn" onclick="GitHubAPI.refresh()" title="Refresh releases"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>Refresh</button></div>
+
+      <div class="filter-tabs" id="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterReleases('all')">All <span class="count" id="count-all">--</span></button>
+        <button class="filter-tab" data-filter="JusBrowse" onclick="filterReleases('JusBrowse')">JusBrowse <span class="count" id="count-JusBrowse">--</span></button>
+        <button class="filter-tab" data-filter="JusChatz" onclick="filterReleases('JusChatz')">JusChatz <span class="count" id="count-JusChatz">--</span></button>
+        <button class="filter-tab" data-filter="DotNotes" onclick="filterReleases('DotNotes')">DotNotes <span class="count" id="count-DotNotes">--</span></button>
+      </div>
+
+      <div class="release-search-wrap">
+        <input type="text" class="release-search" id="release-search" placeholder="Search releases..." aria-label="Search releases" oninput="searchReleases(this.value)">
+      </div>
+
+      <div class="sort-wrap">
+        <select class="sort-select" id="release-sort" onchange="sortReleases(this.value)">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </div>
+
+      <div class="rlist" id="releases-container">
+        <div class="rc open">
+          <div class="rh" role="button" tabindex="0" aria-expanded="true">
+            <div class="rhl"><span class="rv skeleton" style="width:80px;height:24px">Loading...</span>
+              <div class="ri">
+                <div class="rn skeleton" style="width:200px;height:16px">Fetching releases...</div>
+                <div class="rd skeleton" style="width:100px;height:12px;margin-top:8px"></div>
+              </div>
+            </div>
+            <div class="rmeta"><span class="chev">▾</span></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer role="contentinfo">
+    <span>&copy; 2026 JusDots &middot; Open Source</span>
+    <span><a href="https://github.com/shubh72010" target="_blank">GitHub</a> &middot;
+      <a href="https://github.com/shubh72010/JusBrowse/releases" target="_blank">JusBrowse</a> &middot;
+      <a href="https://github.com/shubh72010/DotNotes" target="_blank">DotNotes</a></span>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

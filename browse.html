@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>JusBrowse | Privacy-First Browser - JusDots</title>
+  <meta name="description"
+    content="JusBrowse - Privacy-first Android browser with fingerprint protection, tracker blocking, and minimal memory footprint." />
+  <meta name="author" content="JusDots" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shubh72010.github.io/JusDots-Dev/browse.html" />
+  <meta property="og:title" content="JusBrowse | Privacy-First Browser" />
+  <meta property="og:description" content="Privacy-first Android browser with advanced fingerprinting protection and tracker blocking." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="icon" href="JusDots.png" type="image/png">
+  <link rel="apple-touch-icon" href="JusDots.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav role="navigation" aria-label="Main navigation">
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="JusDots.png" alt="JusDots" class="logo-img"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="logo-ic" style="display:none">JD</div>
+      <div class="logo-tx">Jus<span>Dots</span></div>
+    </a>
+    <div class="nav-links" role="menubar">
+      <a href="index.html" role="menuitem">Home</a>
+      <a href="browse.html" class="active" role="menuitem">JusBrowse</a>
+      <a href="chat.html" role="menuitem">JusChatz</a>
+      <a href="notes.html" role="menuitem">DotNotes</a>
+      <a href="releases.html" role="menuitem">Releases</a>
+      <a href="docs.html" role="menuitem">Docs</a>
+      <a href="research.html" role="menuitem">Research</a>
+    </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="sun-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="moon-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+  </nav>
+
+  <div class="layout">
+    <main id="main-content" role="main">
+      <div class="hero">
+        <img src="JusBrowse.png" alt="JusBrowse" class="hero-logo" onerror="this.style.display='none'">
+        <div class="htag">Browser</div>
+        <h1>Browse without<br/><span>being watched</span></h1>
+        <p>A hardened Android browser with advanced fingerprinting protection, tracker blocking, and a tiny memory footprint. Your business is yours alone.</p>
+        <div class="hbtns">
+          <a class="btn bp" href="https://github.com/shubh72010/JusBrowse/releases" target="_blank">Download APK</a>
+          <a class="btn bs" href="https://github.com/shubh72010/JusBrowse" target="_blank">
+            GitHub
+            <svg class="arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="stitle-mono">Features</div>
+      <div class="stitle">What makes it different</div>
+      <div class="features">
+        <div class="feat">
+          <h3>Fingerprint Protection</h3>
+          <p>Advanced Fake Mode with hardware spoofing, canvas noise, WebRTC shielding.</p>
+        </div>
+        <div class="feat">
+          <h3>Tracker Blocking</h3>
+          <p>Built-in ad/tracker blocking using EasyList with DNS-level filtering.</p>
+        </div>
+        <div class="feat">
+          <h3>Privacy Mode</h3>
+          <p>Incognito browsing with data isolation and automatic storage clearing.</p>
+        </div>
+        <div class="feat">
+          <h3>Lightweight</h3>
+          <p>Built on Android WebView. ~25MB APK size, low memory usage.</p>
+        </div>
+        <div class="feat">
+          <h3>DNS over HTTPS</h3>
+          <p>Custom DoH URLs with secure DNS resolution.</p>
+        </div>
+        <div class="feat">
+          <h3>Fullscreen Video</h3>
+          <p>Enhanced media playback with fullscreen support.</p>
+        </div>
+      </div>
+
+      <div class="stitle-mono">Showcase</div>
+      <div class="stitle">App Showcase</div>
+      <div class="screenshot-gallery">
+        <div class="screenshot-item">
+          <img src="assets/JusBrowse.png" alt="JusBrowse Screenshot">
+        </div>
+      </div>
+
+      <div class="stitle-mono">Specifications</div>
+      <div class="stitle">Technical Specs</div>
+      <table class="ct">
+        <tbody>
+          <tr>
+            <td style="width:40%">Min Android</td>
+            <td>API 29 (Android 10)</td>
+          </tr>
+          <tr>
+            <td>APK Size</td>
+            <td>~25MB</td>
+          </tr>
+          <tr>
+            <td>Engine</td>
+            <td>Android WebView</td>
+          </tr>
+          <tr>
+            <td>Language</td>
+            <td>Kotlin</td>
+          </tr>
+          <tr>
+            <td>License</td>
+            <td>GPL-3.0</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="app-releases">
+        <div class="stitle-mono">Releases</div>
+        <div class="stitle">Recent Releases <span class="release-count" id="count-browse">--</span></div>
+        <div class="release-mini-list" id="releases-browse">
+          <div class="release-mini">
+            <div class="meta"><span class="version skeleton" style="width:80px;display:inline-block;height:16px">Loading...</span></div>
+          </div>
+        </div>
+        <a class="view-all" href="releases.html">View All Releases</a>
+      </div>
+
+      <div class="github-widget">
+        <div class="github-widget-header">
+          <h3>JusBrowse on GitHub</h3>
+          <span class="github-stars skeleton" id="stars-widget-browse">--</span>
+        </div>
+        <a class="btn bs" href="https://github.com/shubh72010/JusBrowse" target="_blank">View Repository</a>
+        <a class="btn bp" id="download-widget-browse" href="https://github.com/shubh72010/JusBrowse/releases" target="_blank">Download APK</a>
+      </div>
+    </main>
+  </div>
+
+  <footer role="contentinfo">
+    <span>&copy; 2026 JusDots &middot; Open Source</span>
+    <span><a href="https://github.com/shubh72010" target="_blank">GitHub</a> &middot;
+      <a href="https://github.com/shubh72010/JusBrowse/releases" target="_blank">JusBrowse</a> &middot;
+      <a href="https://github.com/shubh72010/DotNotes" target="_blank">DotNotes</a></span>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

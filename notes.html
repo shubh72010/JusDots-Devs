@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DotNotes | Note Taking App - JusDots</title>
+  <meta name="description"
+    content="DotNotes - Modern, privacy-focused note-taking app for Android. Organize with folders, secure with biometrics, and create rich checklists." />
+  <meta name="author" content="JusDots" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shubh72010.github.io/JusDots-Dev/notes.html" />
+  <meta property="og:title" content="DotNotes | Note Taking App" />
+  <meta property="og:description" content="Modern, privacy-focused note-taking app for Android." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="icon" href="JusDots.png" type="image/png">
+  <link rel="apple-touch-icon" href="JusDots.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav role="navigation" aria-label="Main navigation">
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="JusDots.png" alt="JusDots" class="logo-img"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="logo-ic" style="display:none">JD</div>
+      <div class="logo-tx">Jus<span>Dots</span></div>
+    </a>
+    <div class="nav-links" role="menubar">
+      <a href="index.html" role="menuitem">Home</a>
+      <a href="browse.html" role="menuitem">JusBrowse</a>
+      <a href="chat.html" role="menuitem">JusChatz</a>
+      <a href="notes.html" class="active" role="menuitem">DotNotes</a>
+      <a href="releases.html" role="menuitem">Releases</a>
+      <a href="docs.html" role="menuitem">Docs</a>
+      <a href="research.html" role="menuitem">Research</a>
+    </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="sun-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="moon-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+  </nav>
+
+  <div class="layout">
+    <main id="main-content" role="main">
+      <div class="hero">
+        <img src="DotNotes.png" alt="DotNotes" class="hero-logo" onerror="this.style.display='none'">
+        <div class="htag">Productivity</div>
+        <h1>Your thoughts.<br/><span>Your place.</span></h1>
+        <p>A modern, privacy-first note-taking app. Folders, biometric lock, secret notes, dynamic checklists — everything stays on your device.</p>
+        <div class="hbtns">
+          <a class="btn bp" href="https://github.com/shubh72010/DotNotes/releases" target="_blank">Download APK</a>
+          <a class="btn bs" href="https://github.com/shubh72010/DotNotes" target="_blank">
+            GitHub
+            <svg class="arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="stitle-mono">Features</div>
+      <div class="stitle">What makes it different</div>
+      <div class="features">
+        <div class="feat">
+          <h3>Folder Organization</h3>
+          <p>Group notes into custom folders with rename/remove support.</p>
+        </div>
+        <div class="feat">
+          <h3>Secret Notes</h3>
+          <p>Biometrically secured private notes. Your sensitive data stays protected.</p>
+        </div>
+        <div class="feat">
+          <h3>Dynamic Checklists</h3>
+          <p>Create and reorder items with smooth drag-and-drop support.</p>
+        </div>
+        <div class="feat">
+          <h3>Image Integration</h3>
+          <p>Attach images to notes for better visual context.</p>
+        </div>
+        <div class="feat">
+          <h3>Pin & Share</h3>
+          <p>Keep important notes at top and easily share content.</p>
+        </div>
+        <div class="feat">
+          <h3>Customization</h3>
+          <p>Dark, Light, and System themes with animation controls.</p>
+        </div>
+      </div>
+
+      <div class="stitle-mono">Showcase</div>
+      <div class="stitle">App Showcase</div>
+      <div class="screenshot-gallery">
+        <div class="screenshot-item">
+          <img src="assets/DN1.webp" alt="DotNotes Screenshot 1">
+        </div>
+        <div class="screenshot-item">
+          <img src="assets/DN2.webp" alt="DotNotes Screenshot 2">
+        </div>
+        <div class="screenshot-item">
+          <img src="assets/DN3.webp" alt="DotNotes Screenshot 3">
+        </div>
+        <div class="screenshot-item">
+          <img src="assets/DN4.webp" alt="DotNotes Screenshot 4">
+        </div>
+      </div>
+
+      <div class="stitle-mono">Specifications</div>
+      <div class="stitle">Technical Specs</div>
+      <table class="ct">
+        <tbody>
+          <tr>
+            <td style="width:40%">Min Android</td>
+            <td>API 24 (Android 7.0)</td>
+          </tr>
+          <tr>
+            <td>APK Size</td>
+            <td>~8MB</td>
+          </tr>
+          <tr>
+            <td>UI Framework</td>
+            <td>Jetpack Compose</td>
+          </tr>
+          <tr>
+            <td>Database</td>
+            <td>Room Persistence</td>
+          </tr>
+          <tr>
+            <td>Architecture</td>
+            <td>MVVM</td>
+          </tr>
+          <tr>
+            <td>License</td>
+            <td>GPL-3.0</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="app-releases">
+        <div class="stitle-mono">Releases</div>
+        <div class="stitle">Recent Releases <span class="release-count" id="count-notes">--</span></div>
+        <div class="release-mini-list" id="releases-notes">
+          <div class="release-mini">
+            <div class="meta"><span class="version skeleton" style="width:80px;display:inline-block;height:16px">Loading...</span></div>
+          </div>
+        </div>
+        <a class="view-all" href="releases.html">View All Releases</a>
+      </div>
+
+      <div class="github-widget">
+        <div class="github-widget-header">
+          <h3>DotNotes on GitHub</h3>
+          <span class="github-stars skeleton" id="stars-widget-notes">--</span>
+        </div>
+        <a class="btn bs" href="https://github.com/shubh72010/DotNotes" target="_blank">View Repository</a>
+        <a class="btn bp" id="download-widget-notes" href="https://github.com/shubh72010/DotNotes/releases" target="_blank">Download APK</a>
+      </div>
+    </main>
+  </div>
+
+  <footer role="contentinfo">
+    <span>&copy; 2026 JusDots &middot; Open Source</span>
+    <span><a href="https://github.com/shubh72010" target="_blank">GitHub</a> &middot;
+      <a href="https://github.com/shubh72010/JusBrowse/releases" target="_blank">JusBrowse</a> &middot;
+      <a href="https://github.com/shubh72010/DotNotes" target="_blank">DotNotes</a></span>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

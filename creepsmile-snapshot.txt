@@ -1,0 +1,205 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - link "Creepsmile home" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e5]: Creepsmile
+    - button "Menu" [ref=e6] [cursor=pointer]
+  - complementary [ref=e7]:
+    - button [ref=e8] [cursor=pointer]: Close
+    - navigation [ref=e9]:
+      - link [ref=e10] [cursor=pointer]:
+        - /url: /
+        - text: Home
+      - link [ref=e11] [cursor=pointer]:
+        - /url: /projects
+        - text: Projects
+      - link [ref=e12] [cursor=pointer]:
+        - /url: /store
+        - text: Store
+      - link [ref=e13] [cursor=pointer]:
+        - /url: /#process
+        - text: Process
+      - link [ref=e14] [cursor=pointer]:
+        - /url: /#faq
+        - text: FAQs
+      - button [ref=e15] [cursor=pointer]: Contact
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - heading "Meet the future of Digital Productivity" [level=1] [ref=e19]
+      - img "Person wearing a glowing visor" [ref=e20]
+    - generic [ref=e21]:
+      - paragraph [ref=e22]: About us
+      - generic [ref=e23]:
+        - paragraph [ref=e24]: At Creepsmile, we create digital experiences that boost productivity in a soulful way. Our goal is to provide enjoyable, seamless tools that help people focus, stay consistent, and make meaningful progress.
+        - link "Explore our products ↗" [ref=e25] [cursor=pointer]:
+          - /url: /projects
+          - text: Explore our products
+          - generic [ref=e26]: ↗
+    - generic [ref=e27]:
+      - paragraph [ref=e28]: Vision
+      - generic [ref=e29]:
+        - heading "Our goal is to develop apps that enhance productivity in people's daily lives." [level=2] [ref=e30]
+        - paragraph [ref=e31]: Good apps are not about what they look like. They are about solving problems and making work feel possible.
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e34]: amazingly designed app this is so much cooler than chrome! I'd love to see it continue growing
+        - generic [ref=e35]: great app, helped me in retaining my focus on my work ❤️
+        - generic [ref=e36]: The app is very nice and effective
+        - generic [ref=e37]: Easy to use and made my productivity high
+        - generic [ref=e38]: amazingly designed app this is so much cooler than chrome! I'd love to see it continue growing
+        - generic [ref=e39]: great app, helped me in retaining my focus on my work ❤️
+        - generic [ref=e40]: The app is very nice and effective
+        - generic [ref=e41]: Easy to use and made my productivity high
+      - generic [ref=e42]:
+        - generic [ref=e43]: The concept may be simple, but it's useful when you need focused time. The execution is excellent.
+        - generic [ref=e44]: it's beautiful and I love it
+        - generic [ref=e45]: Seems very promising, it remembers me Arc search on iOS,
+        - generic [ref=e46]: The concept may be simple, but it's useful when you need focused time. The execution is excellent.
+        - generic [ref=e47]: it's beautiful and I love it
+        - generic [ref=e48]: Seems very promising, it remembers me Arc search on iOS,
+    - generic [ref=e49]:
+      - generic [ref=e50]:
+        - paragraph [ref=e51]: Process
+        - heading "We select the ideal tech stack by analyzing trends and collaborating on prototypes." [level=2] [ref=e52]
+      - generic [ref=e53]:
+        - button "01 Research We map the user problem, study the workflow, and turn scattered needs into clear product choices." [ref=e54] [cursor=pointer]:
+          - generic [ref=e55]: "01"
+          - strong [ref=e56]: Research
+          - paragraph [ref=e57]: We map the user problem, study the workflow, and turn scattered needs into clear product choices.
+        - button "02 Design Interfaces stay minimal, tactile, and soulful, with every screen shaped around the task it supports." [ref=e58] [cursor=pointer]:
+          - generic [ref=e59]: "02"
+          - strong [ref=e60]: Design
+          - paragraph [ref=e61]: Interfaces stay minimal, tactile, and soulful, with every screen shaped around the task it supports.
+        - button "03 Develop We build fast, focused products with practical stacks that are easy to maintain after launch." [ref=e62] [cursor=pointer]:
+          - generic [ref=e63]: "03"
+          - strong [ref=e64]: Develop
+          - paragraph [ref=e65]: We build fast, focused products with practical stacks that are easy to maintain after launch.
+        - button "04 Deploy & Support Launch is followed by iteration, fixes, and support so the product keeps improving with real use." [ref=e66] [cursor=pointer]:
+          - generic [ref=e67]: "04"
+          - strong [ref=e68]: Deploy & Support
+          - paragraph [ref=e69]: Launch is followed by iteration, fixes, and support so the product keeps improving with real use.
+    - generic [ref=e70]:
+      - generic [ref=e71]:
+        - paragraph [ref=e72]: Products
+        - generic [ref=e73]:
+          - heading "Our Products" [level=2] [ref=e74]
+          - paragraph [ref=e75]: Dive into our products that help you be productive in day-to-day lives.
+      - generic [ref=e76]:
+        - link "Dot Player Dot Player" [ref=e77] [cursor=pointer]:
+          - /url: /project/dot-player
+          - img "Dot Player" [ref=e79]
+          - heading "Dot Player" [level=3] [ref=e80]
+        - link "Essential Browser Essential Browser" [ref=e81] [cursor=pointer]:
+          - /url: /project/essential-browser
+          - img "Essential Browser" [ref=e83]
+          - heading "Essential Browser" [level=3] [ref=e84]
+        - link "Don't Look Don't Look" [ref=e85] [cursor=pointer]:
+          - /url: /project/dont-look
+          - img "Don't Look" [ref=e87]
+          - heading "Don't Look" [level=3] [ref=e88]
+    - generic [ref=e90]:
+      - heading "Want to build something great?" [level=2] [ref=e91]
+      - paragraph [ref=e92]: We help you build your idea from design to deployment that helps you grow.
+      - button "Start now ↗" [ref=e93] [cursor=pointer]:
+        - text: Start now
+        - generic [ref=e94]: ↗
+    - generic [ref=e96]:
+      - heading "Get to know about us" [level=2] [ref=e97]
+      - generic [ref=e98]:
+        - paragraph [ref=e99]:
+          - strong [ref=e100]: 4+
+          - generic [ref=e101]: Projects Delivered
+        - paragraph [ref=e102]:
+          - strong [ref=e103]: 2+
+          - generic [ref=e104]: Happy Clients
+        - paragraph [ref=e105]:
+          - strong [ref=e106]: 20k+
+          - generic [ref=e107]: Users on our products
+    - generic [ref=e108]:
+      - generic [ref=e109]:
+        - heading "FAQs" [level=2] [ref=e110]
+        - paragraph [ref=e111]: We help you build your idea from design to deployment that helps you grow.
+        - button "Contact us ↗" [ref=e112] [cursor=pointer]:
+          - text: Contact us
+          - generic [ref=e113]: ↗
+      - generic [ref=e114]:
+        - button "What does Creepsmile build? Creepsmile creates productivity-focused digital experiences, apps, brand systems, and product interfaces." [ref=e115] [cursor=pointer]:
+          - generic [ref=e116]: What does Creepsmile build?
+          - paragraph [ref=e119]: Creepsmile creates productivity-focused digital experiences, apps, brand systems, and product interfaces.
+        - button "Can you handle design and development? Yes. Projects can include UI/UX, brand direction, frontend development, app development, and launch support." [ref=e120] [cursor=pointer]:
+          - generic [ref=e121]: Can you handle design and development?
+          - paragraph [ref=e122]: Yes. Projects can include UI/UX, brand direction, frontend development, app development, and launch support.
+        - button "How fast can a project start? Small MVPs can move quickly after scope is clear. Larger products are planned around features and complexity." [ref=e123] [cursor=pointer]:
+          - generic [ref=e124]: How fast can a project start?
+          - paragraph [ref=e125]: Small MVPs can move quickly after scope is clear. Larger products are planned around features and complexity.
+        - button "How do I collaborate with Creepsmile? Use the contact form with your idea, product stage, and goals. Creepsmile will help shape the next step." [ref=e126] [cursor=pointer]:
+          - generic [ref=e127]: How do I collaborate with Creepsmile?
+          - paragraph [ref=e128]: Use the contact form with your idea, product stage, and goals. Creepsmile will help shape the next step.
+  - contentinfo [ref=e129]:
+    - generic [ref=e130]:
+      - generic [ref=e131]:
+        - generic [ref=e132]:
+          - link "Creepsmile" [ref=e133] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e134]: Creepsmile
+          - paragraph [ref=e135]: Productive Tech
+        - generic [ref=e136]:
+          - heading "Products" [level=4] [ref=e137]
+          - list [ref=e138]:
+            - listitem [ref=e139]:
+              - link "Don't Look" [ref=e140] [cursor=pointer]:
+                - /url: /project/dont-look
+            - listitem [ref=e141]:
+              - link "Repowarp" [ref=e142] [cursor=pointer]:
+                - /url: /project/repowarp
+            - listitem [ref=e143]:
+              - link "Essential Browser" [ref=e144] [cursor=pointer]:
+                - /url: /project/essential-browser
+            - listitem [ref=e145]:
+              - link "NeoCalc" [ref=e146] [cursor=pointer]:
+                - /url: /project/neocalc
+            - listitem [ref=e147]:
+              - link "Dot Widgets" [ref=e148] [cursor=pointer]:
+                - /url: /project/dot-widgets
+            - listitem [ref=e149]:
+              - link "Dot Player" [ref=e150] [cursor=pointer]:
+                - /url: /project/dot-player
+        - generic [ref=e151]:
+          - heading "Explore" [level=4] [ref=e152]
+          - list [ref=e153]:
+            - listitem [ref=e154]:
+              - link "Announcements" [ref=e155] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e156]:
+              - link "Newsletters" [ref=e157] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e158]:
+              - link "Careers" [ref=e159] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e160]:
+              - link "Community" [ref=e161] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e162]:
+          - heading "Resources" [level=4] [ref=e163]
+          - list [ref=e164]:
+            - listitem [ref=e165]:
+              - link "Terms of Service" [ref=e166] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e167]:
+              - link "Privacy Policy" [ref=e168] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e169]:
+              - link "Contact US" [ref=e170] [cursor=pointer]:
+                - /url: "#"
+      - generic: CREEPSMILE
+      - generic [ref=e172]: © 2026 Creepsmile. A Productivity Company.
+  - generic:
+    - generic:
+      - button "Close"
+      - heading "Get in touch" [level=2]
+      - paragraph: Do you have ideas or want help in execution? Let us know and we will help you shape it.
+      - textbox "Your name"
+      - textbox "Your email"
+      - textbox "Project type"
+      - textbox "Message / project description"
+      - button "Submit Request"

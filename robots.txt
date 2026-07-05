@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://shubh72010.github.io/JusBrowse/sitemap.xml

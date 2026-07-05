@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Research Notes | JusDots</title>
+  <meta name="description"
+    content="Technical research notes from JusDots development - JA4 fingerprinting, Fake Mode, WebView performance, and tracker blocking." />
+  <meta name="author" content="JusDots" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shubh72010.github.io/JusDots-Dev/research.html" />
+  <meta property="og:title" content="Research Notes | JusDots" />
+  <meta property="og:description" content="Technical research notes from JusDots development." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="icon" href="JusDots.png" type="image/png">
+  <link rel="apple-touch-icon" href="JusDots.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav role="navigation" aria-label="Main navigation">
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="JusDots.png" alt="JusDots" class="logo-img"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="logo-ic" style="display:none">JD</div>
+      <div class="logo-tx">Jus<span>Dots</span></div>
+    </a>
+    <div class="nav-links" role="menubar">
+      <a href="index.html" role="menuitem">Home</a>
+      <a href="browse.html" role="menuitem">JusBrowse</a>
+      <a href="chat.html" role="menuitem">JusChatz</a>
+      <a href="notes.html" role="menuitem">DotNotes</a>
+      <a href="releases.html" role="menuitem">Releases</a>
+      <a href="docs.html" role="menuitem">Docs</a>
+      <a href="research.html" class="active" role="menuitem">Research</a>
+    </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="sun-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="moon-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+  </nav>
+
+  <div class="layout">
+    <main id="main-content" role="main">
+      <div id="research-main">
+        <div class="stitle-mono">Research</div>
+        <div class="stitle">Deep dives & technical notes</div>
+        <p style="color:var(--ink-muted);margin-bottom:32px;max-width:65ch">Technical notes from JusDots development.</p>
+
+        <div class="docs-grid">
+          <div class="docs-card" onclick="sr('ja4')" style="cursor:pointer;">
+            <h3>JA4 Fingerprinting</h3>
+            <p>Modular, human-readable method for identifying clients based on TLS handshakes. Designed to replace JA3.</p>
+          </div>
+          <div class="docs-card" onclick="sr('fake-mode')" style="cursor:pointer;">
+            <h3>Fake Mode Research</h3>
+            <p>Digital identity hijacking protection via hardware spoofing, canvas noise, and WebRTC shielding.</p>
+          </div>
+          <div class="docs-card" onclick="sr('webview-perf')" style="cursor:pointer;">
+            <h3>WebView Performance</h3>
+            <p>Native Rendering vs. Custom Chromium Engines. Analyzing the 15-22% speed gap.</p>
+          </div>
+          <div class="docs-card" onclick="sr('tracker-blocking')" style="cursor:pointer;">
+            <h3>Tracker Blocking</h3>
+            <p>Effectiveness of the Surgical Engine. ~85% tracker reduction analysis.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- JA4 RESEARCH DETAIL -->
+      <div class="research-detail" id="research-detail-ja4" style="display:none">
+        <div style="margin-bottom: 24px;">
+          <a onclick="sr('back')" class="view-all" style="cursor:pointer;flex-direction:row-reverse">Back to Research</a>
+        </div>
+
+        <div class="stitle">JA4 Fingerprinting — Deep Technical Breakdown</div>
+        <div class="callout callout-info">
+          <p><strong>JA4 Fingerprinting</strong> is a modular, human-readable method for identifying clients (browsers, bots, or malware) based on how they initiate a secure connection. Unlike its predecessor, which produced a single fragile hash, JA4 splits the fingerprint into three distinct parts (a_b_c), sorting and simplifying the data to remain stable even when technical details change randomly.</p>
+        </div>
+
+        <div class="rc open">
+          <div class="rh" onclick="tr(this)">
+            <div class="rhl"><span class="rv">Section 1</span><span class="ri"><span class="rn">The Anatomy of a JA4 Fingerprint</span></span></div>
+            <span class="chev">▾</span>
+          </div>
+          <div class="rb">
+            <p style="margin: 16px 0; line-height: 1.8;">A JA4 fingerprint is a 36-character string divided into three sections: <strong>a_b_c</strong>.</p>
+
+            <div style="text-align:center; margin: 24px 0;">
+              <img src="assets/ja4_anatomy.png" alt="JA4 Anatomy Diagram" style="width:100%; max-width:800px; border:1px solid var(--border);">
+              <p style="font-size: 12px; color: var(--ink-muted-2); margin-top: 8px;">JA4 Fingerprint Structure Overview</p>
+            </div>
+
+            <h4 style="margin: 32px 0 12px; font-size: 18px; font-weight:600;">Part A: The Readable Header (Plaintext)</h4>
+            <p style="margin-bottom: 16px; color: var(--ink-muted);">Captures high-level behavior. For example: <code>t13d1516h2</code></p>
+
+            <div style="text-align:center; margin: 24px 0;">
+              <img src="assets/ja4_part_a.png" alt="JA4 Part A Breakdown" style="width:100%; max-width:700px; border:1px solid var(--border);">
+              <p style="font-size: 12px; color: var(--ink-muted-2); margin-top: 8px;">Part A Header Segments</p>
+            </div>
+
+            <table class="ct">
+              <tr><th>Segment</th><th>Meaning</th></tr>
+              <tr><td><strong>t</strong></td><td>Protocol (t=TCP, q=QUIC)</td></tr>
+              <tr><td><strong>13</strong></td><td>TLS Version (13=TLS 1.3, 12=TLS 1.2)</td></tr>
+              <tr><td><strong>d</strong></td><td>SNI Type (d=Domain, i=IP)</td></tr>
+              <tr><td><strong>15</strong></td><td>Number of Cipher Suites (2 digits)</td></tr>
+              <tr><td><strong>16</strong></td><td>Number of Extensions (2 digits)</td></tr>
+              <tr><td><strong>h2</strong></td><td>ALPN (e.g., h2 for HTTP/2)</td></tr>
+            </table>
+
+            <h4 style="margin: 32px 0 12px; font-size: 18px; font-weight:600;">Part B: Cipher Hash (Truncated SHA256)</h4>
+            <p style="color: var(--ink-muted);">A 12-character hash of the <strong>sorted</strong> list of Cipher Suites.</p>
+            <div class="callout callout-tip" style="margin: 16px 0;">
+              <p><strong>Critical Improvement:</strong> Unlike JA3, JA4 sorts the ciphers before hashing. This prevents Cipher Stunting or randomization (common in Chrome) from changing the fingerprint.</p>
+            </div>
+
+            <h4 style="margin: 32px 0 12px; font-size: 18px; font-weight:600;">Part C: Extension Hash (Truncated SHA256)</h4>
+            <p style="color: var(--ink-muted);">A 12-character hash of the <strong>sorted</strong> list of TLS Extensions. This section often acts as the true signature of the client's SSL stack.</p>
+          </div>
+        </div>
+
+        <div class="rc">
+          <div class="rh" onclick="tr(this)">
+            <div class="rhl"><span class="rv">Section 2</span><span class="ri"><span class="rn">Evolution: Why JA3 Failed</span></span></div>
+            <span class="chev">▾</span>
+          </div>
+          <div class="rb">
+            <p style="margin: 16px 0; color: var(--ink-muted); line-height: 1.8;">Modern browsers like Chrome began randomizing the order of their TLS extensions (Grease), causing a single browser version to generate millions of different JA3 hashes, making detection pipelines unusable.</p>
+            <table class="ct">
+              <tr><th>Feature</th><th>JA3 (Legacy)</th><th>JA4 (Modern)</th></tr>
+              <tr><td><strong>Format</strong></td><td>Single MD5 Hash (32 chars)</td><td>Modular a_b_c String (36 chars)</td></tr>
+              <tr><td><strong>Readability</strong></td><td>Opaque (Unreadable)</td><td>Transparent (Part A is plaintext)</td></tr>
+              <tr><td><strong>Ordering</strong></td><td>Exact order (Fragile)</td><td>Sorted (Resistant)</td></tr>
+              <tr><td><strong>False Positives</strong></td><td>High</td><td>Low (Fuzzy matching possible)</td></tr>
+            </table>
+
+            <h4 style="margin: 32px 0 12px; font-size: 18px; font-weight:600;">The JA4+ Suite</h4>
+            <p style="color: var(--ink-muted);">JA4 is part of a larger suite designed to correlate data across different layers of the OSI model:</p>
+            <div style="text-align:center; margin: 24px 0;">
+              <img src="assets/ja4_suite.png" alt="JA4+ Suite Ecosystem" style="width:100%; max-width:600px; border:1px solid var(--border);">
+              <p style="font-size: 12px; color: var(--ink-muted-2); margin-top: 8px;">JA4+ Suite Ecosystem Visualization</p>
+            </div>
+            <ul>
+              <li><strong>JA4S (Server):</strong> Fingerprints the server's response to identify server software.</li>
+              <li><strong>JA4H (HTTP):</strong> Fingerprints HTTP headers and cookie structures.</li>
+              <li><strong>JA4L (Latency):</strong> Measures latency to infer physical distance or detect proxies.</li>
+              <li><strong>JA4X (X.509):</strong> Fingerprints the SSL certificate itself.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rc">
+          <div class="rh" onclick="tr(this)">
+            <div class="rhl"><span class="rv">Section 3</span><span class="ri"><span class="rn">Security Use Cases</span></span></div>
+            <span class="chev">▾</span>
+          </div>
+          <div class="rb">
+            <div class="docs-grid" style="grid-template-columns: 1fr;">
+              <div class="docs-card">
+                <h4>1. Bot & Scraper Detection</h4>
+                <p>User-Agents can lie, but TLS handshakes rarely do. If a request claims to be Chrome but the JA4 matches a Python library, it is an immediate red flag.</p>
+              </div>
+              <div class="docs-card">
+                <h4>2. C2 (Command & Control) Identification</h4>
+                <p>Malware families (like Cobalt Strike) often use hard-coded TLS libraries. Security teams block based on JA4 signatures that persist across IP rotations.</p>
+              </div>
+              <div class="docs-card">
+                <h4>3. Session Hijacking Prevention</h4>
+                <p>Platforms detect if a session cookie is used by a different JA4 fingerprint, implying account compromise or cookie theft, triggering immediate invalidation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stitle-mono" style="margin-top:64px">Sources</div>
+        <div class="stitle">Sources & Further Reading</div>
+        <div class="callout" style="background:var(--surface);">
+          <ul style="list-style:none; padding:0;">
+            <li style="margin-bottom:12px;"><a href="https://security.googlecloudcommunity.com/community-blog-42/ja4-fingerprinting-in-gti-deep-dive-6043" target="_blank" style="color:var(--accent);text-decoration:underline;">Google Cloud: JA4 Fingerprinting Deep Dive</a></li>
+            <li style="margin-bottom:12px;"><a href="https://zeek.org/2026/01/how-to-use-ja4-network-fingerprints-in-zeek/" target="_blank" style="color:var(--accent);text-decoration:underline;">Zeek: How to Use JA4 in Network Monitoring</a></li>
+            <li style="margin-bottom:12px;"><a href="https://medium.com/foxio/ja4-network-fingerprinting-9376fe9ca637" target="_blank" style="color:var(--accent);text-decoration:underline;">Medium (FoxIO): JA4 Network Fingerprinting Launch</a></li>
+            <li style="margin-bottom:12px;"><a href="https://github.com/FoxIO-LLC/ja4" target="_blank" style="color:var(--accent);text-decoration:underline;">GitHub: Official JA4 Reference Implementation</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FAKE MODE RESEARCH DETAIL -->
+      <div class="research-detail" id="research-detail-fake-mode" style="display:none">
+        <div style="margin-bottom: 24px;">
+          <a onclick="sr('back')" class="view-all" style="cursor:pointer;flex-direction:row-reverse">Back to Research</a>
+        </div>
+
+        <div class="stitle">Fake Mode: Digital Identity Hijacking & Fingerprint Protection</div>
+
+        <div class="callout callout-info">
+          <p>JusBrowse's <strong>Fake Mode</strong> provides multiple layers of defense against advanced browser fingerprinting. By spoofing hardware signatures, injecting canvas entropy, and shielding network vectors, it ensures that your digital identity remains unique to you and unlinked by third-party trackers.</p>
+        </div>
+
+        <table class="ct">
+          <thead>
+            <tr><th>Strategy</th><th>Implementation in JusBrowse</th><th>Effectiveness</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hardware Spoofing</strong></td>
+              <td>Manual overrides of <code>navigator.hardwareConcurrency</code> and <code>navigator.deviceMemory</code>.</td>
+              <td><strong>High.</strong> JusBrowse aligns these to Pixel 8 Pro specs.</td>
+            </tr>
+            <tr>
+              <td><strong>Canvas Noise</strong></td>
+              <td>Seeded pixel manipulation in <code>getImageData</code> to break static canvas hashes.</td>
+              <td><strong>High (Dynamic).</strong> Prevents global tracking while maintaining session stability.</td>
+            </tr>
+            <tr>
+              <td><strong>WebGL/GPU Spoofing</strong></td>
+              <td>Interception of <code>getParameter</code> to report Mali-G715 (Tensor G3).</td>
+              <td><strong>Critical.</strong> Eliminates common Generic GPU giveaways.</td>
+            </tr>
+            <tr>
+              <td><strong>WebRTC Shielding</strong></td>
+              <td>API Occlusion / IP Leak protection.</td>
+              <td><strong>Mandatory.</strong> WebRTC is the #1 vector for IP leaks behind VPNs.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- WEBVIEW PERFORMANCE DETAIL -->
+      <div class="research-detail" id="research-detail-webview-perf" style="display:none">
+        <div style="margin-bottom: 24px;">
+          <a onclick="sr('back')" class="view-all" style="cursor:pointer;flex-direction:row-reverse">Back to Research</a>
+        </div>
+
+        <div class="stitle">WebView Performance: Native vs. Custom Chromium Engines</div>
+
+        <div class="callout callout-info">
+          <p>Research into the <strong>Android System WebView (ASW)</strong> vs. Full Chromium for 2024 shows a narrowing but still present performance gap. JusBrowse optimizes the system engine to achieve standalone performance with a fraction of the footprint.</p>
+        </div>
+
+        <div class="docs-grid">
+          <div class="docs-card">
+            <h4>Rendering Speed</h4>
+            <p>Custom Chromium (like Chrome M130+) typically scores <strong>15-22% higher</strong> on Speedometer 3.0 benchmarks compared to standard WebView.</p>
+          </div>
+          <div class="docs-card">
+            <h4>Resource Footprint</h4>
+            <p>JusBrowse's approach is significantly more memory-efficient. A custom fork added ~150-300MB to binary size and consumed ~20% more RAM.</p>
+          </div>
+          <div class="docs-card" style="background:var(--accent);color:var(--accent-ink);border:none;">
+            <h4 style="color:var(--accent-ink)">JusBrowse Optimization</h4>
+            <p style="color:rgba(255,255,255,0.85)">By using <code>setDataDirectorySuffix</code>, JusBrowse achieves process-level isolation for its WebView instances, bringing performance closer to a standalone browser.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRACKER BLOCKING DETAIL -->
+      <div class="research-detail" id="research-detail-tracker-blocking" style="display:none">
+        <div style="margin-bottom: 24px;">
+          <a onclick="sr('back')" class="view-all" style="cursor:pointer;flex-direction:row-reverse">Back to Research</a>
+        </div>
+
+        <div class="stitle">Tracker Blocking: Effectiveness of the Surgical Engine</div>
+
+        <div class="callout callout-info">
+          <p>JusBrowse employs a <strong>Surgical Interception Engine</strong> that leverages low-level network hooks to scrub tracking parameters and block known analytics domains at the request level.</p>
+        </div>
+
+        <div class="features" style="grid-template-columns:repeat(3,1fr)">
+          <div class="feat">
+            <h3>Proactive Blocking</h3>
+            <p>Intercepts and neutralizes hundreds of tracking requests per media-heavy site via the NetworkSurgeon engine.</p>
+          </div>
+          <div class="feat">
+            <h3>Sub-resource Scrubbing</h3>
+            <p>Targets the 21% of hidden trackers triggered after initial load by stripping headers and blocking sub-resource calls that WebViews usually leak.</p>
+          </div>
+          <div class="feat">
+            <h3>Performance Gain</h3>
+            <p>Blocking trackers results in a 35-50% reduction in data usage and up to 2x faster perceived page load speeds on media-heavy sites.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer role="contentinfo">
+    <span>&copy; 2026 JusDots &middot; Open Source</span>
+    <span><a href="https://github.com/shubh72010" target="_blank">GitHub</a> &middot;
+      <a href="https://github.com/shubh72010/JusBrowse/releases" target="_blank">JusBrowse</a> &middot;
+      <a href="https://github.com/shubh72010/DotNotes" target="_blank">DotNotes</a></span>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
