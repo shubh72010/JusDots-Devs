@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>JusDots | Privacy-First Android Apps</title>
   <meta name="description"
-    content="JusDots - Developer portal for privacy-first Android apps. Browse privately with JusBrowse, chat anonymously with JusChatz, and take notes with DotNotes." />
+    content="JusDots - Developer portal for privacy-first Android apps. Browse privately with JusBrowse-GeckoView, chat anonymously with JusChatz, take notes with DotNotes, and explore Origin Camera, Origin Launcher, and JusPlayer." />
   <meta name="keywords"
     content="android apps, privacy browser, note taking, encrypted chat, android webview, privacy first" />
   <meta name="author" content="JusDots" />
@@ -15,12 +15,12 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://shubh72010.github.io/JusDots-Dev/" />
   <meta property="og:title" content="JusDots | Privacy-First Android Apps" />
-  <meta property="og:description" content="Open source privacy-focused Android apps: JusBrowse, JusChatz, DotNotes" />
+  <meta property="og:description" content="Open source privacy-focused Android apps: JusBrowse-GeckoView, JusChatz, DotNotes, Origin Camera, Origin Launcher, and JusPlayer" />
   <meta property="og:image" content="https://shubh72010.github.io/JusDots-Dev/assets/og-image.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="JusDots | Privacy-First Android Apps" />
-  <meta name="twitter:description" content="Open source privacy-focused Android apps: JusBrowse, JusChatz, DotNotes" />
+  <meta name="twitter:description" content="Open source privacy-focused Android apps: JusBrowse-GeckoView, JusChatz, DotNotes, Origin Camera, Origin Launcher, and JusPlayer" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,12 +34,6 @@
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Mobile Search Bar -->
-  <div class="mobile-search">
-    <input type="search" id="mobile-search-input" placeholder="Search apps, releases, docs..." aria-label="Search"
-      oninput="handleMobileSearch(this.value)">
-  </div>
-
   <nav role="navigation" aria-label="Main navigation">
     <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -50,12 +44,6 @@
       <div class="logo-ic" style="display:none">JD</div>
       <div class="logo-tx">Jus<span>Dots</span></div>
     </a>
-
-    <div class="nav-search">
-      <input type="search" id="nav-search-input" placeholder="Search..." aria-label="Search"
-        oninput="handleNavSearch(this.value)" onfocus="showNavSearchResults()" onblur="hideNavSearchResults()">
-      <div class="nav-search-results" id="nav-search-results"></div>
-    </div>
 
     <div class="nav-links" role="menubar">
       <div class="nav-dropdown">
@@ -70,6 +58,9 @@
           <a onclick="sp('browse')" role="menuitem">JusBrowse</a>
           <a onclick="sp('chat')" role="menuitem">JusChatz</a>
           <a onclick="sp('notes')" role="menuitem">DotNotes</a>
+          <a onclick="sp('camera')" role="menuitem">Origin Camera</a>
+          <a onclick="sp('launcher')" role="menuitem">Origin Launcher</a>
+          <a onclick="sp('player')" role="menuitem">JusPlayer</a>
         </div>
       </div>
       <a onclick="sp('releases')" role="menuitem">Releases</a>
@@ -109,15 +100,15 @@
 
         <div class="stitle reveal">Our Apps</div>
         <div class="app-grid reveal-stagger">
-          <div class="app-card" data-repo="shubh72010/JusBrowse" data-id="browse" data-color="browse">
-            <img src="JusBrowse.png" alt="JusBrowse" class="app-icon-img"
+          <div class="app-card" data-repo="shubh72010/JusBrowse-GeckoView" data-id="browse" data-color="browse">
+            <img src="JusDots.png" alt="JusBrowse GeckoView" class="app-icon-img"
               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="app-icon browse" style="display:none">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             </div>
             <h3>JusBrowse <span class="new-badge" style="display:none">NEW</span></h3>
             <span class="tag privacy">Privacy</span>
-            <p>Privacy-first Android browser with fingerprint protection, tracker blocking, and minimal memory footprint.</p>
+            <p>Privacy-first Android browser built on GeckoView, with fingerprint protection, tracker blocking, and a focused footprint.</p>
             <div class="stats">
               <div class="stat">
                 <div class="stat-n skeleton" id="stars-browse">--</div>
@@ -134,7 +125,91 @@
             </div>
             <div class="actions">
               <a class="btn bs" onclick="sp('browse')">Learn More</a>
-              <a class="btn br" id="download-browse" href="https://github.com/shubh72010/JusBrowse/releases" target="_blank">Download</a>
+              <a class="btn br" id="download-browse" href="https://github.com/shubh72010/JusBrowse-GeckoView/releases" target="_blank">Download</a>
+            </div>
+          </div>
+
+          <div class="app-card" data-repo="rKyzen/Origin-Camera" data-id="camera" data-color="camera">
+            <div class="app-icon" style="background: rgba(96, 165, 250, 0.06);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h4l2-3h4l2 3h4a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </div>
+            <h3>Origin Camera <span class="new-badge" style="display:none">NEW</span></h3>
+            <span class="tag notes">Camera</span>
+            <p>A camera app focused on fast capture, clean controls, and a minimal interface.</p>
+            <div class="stats">
+              <div class="stat">
+                <div class="stat-n skeleton" id="stars-camera">--</div>
+                <div class="stat-l">Stars</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n" id="version-camera">--</div>
+                <div class="stat-l">Releases</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n" id="size-camera">--</div>
+                <div class="stat-l">APK Size</div>
+              </div>
+            </div>
+            <div class="actions">
+              <a class="btn bs" onclick="sp('camera')">Learn More</a>
+              <a class="btn bs" href="https://github.com/rKyzen/Origin-Camera" target="_blank">Repository</a>
+              <a class="btn br" id="download-camera" href="https://github.com/rKyzen/Origin-Camera/releases" target="_blank">Download</a>
+            </div>
+          </div>
+
+          <div class="app-card" data-repo="rKyzen/Origin-Launcher" data-id="launcher" data-color="launcher">
+            <div class="app-icon" style="background: rgba(251, 191, 36, 0.06);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/><path d="M9 21V13h6v8"/></svg>
+            </div>
+            <h3>Origin Launcher <span class="new-badge" style="display:none">NEW</span></h3>
+            <span class="tag privacy">Launcher</span>
+            <p>A lightweight launcher with a clean home screen and quick access to essentials.</p>
+            <div class="stats">
+              <div class="stat">
+                <div class="stat-n skeleton" id="stars-launcher">--</div>
+                <div class="stat-l">Stars</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n" id="version-launcher">--</div>
+                <div class="stat-l">Releases</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n" id="size-launcher">--</div>
+                <div class="stat-l">APK Size</div>
+              </div>
+            </div>
+            <div class="actions">
+              <a class="btn bs" onclick="sp('launcher')">Learn More</a>
+              <a class="btn bs" href="https://github.com/rKyzen/Origin-Launcher" target="_blank">Repository</a>
+              <a class="btn br" id="download-launcher" href="https://github.com/rKyzen/Origin-Launcher/releases" target="_blank">Download</a>
+            </div>
+          </div>
+
+          <div class="app-card" data-repo="shubh72010/Greeny-Goblins" data-id="player" data-color="player">
+            <div class="app-icon" style="background: rgba(52, 211, 153, 0.06);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18l15-9-15-9z"/></svg>
+            </div>
+            <h3>JusPlayer <span class="new-badge" style="display:none">NEW</span></h3>
+            <span class="tag chat">Music</span>
+            <p>Music player project, with Greeny Goblins as the codename used in the repo.</p>
+            <div class="stats">
+              <div class="stat">
+                <div class="stat-n skeleton" id="stars-player">--</div>
+                <div class="stat-l">Stars</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n" id="version-player">--</div>
+                <div class="stat-l">Releases</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n" id="size-player">--</div>
+                <div class="stat-l">APK Size</div>
+              </div>
+            </div>
+            <div class="actions">
+              <a class="btn bs" onclick="sp('player')">Learn More</a>
+              <a class="btn bs" href="https://github.com/shubh72010/Greeny-Goblins" target="_blank">Repository</a>
+              <a class="btn br" id="download-player" href="https://github.com/shubh72010/Greeny-Goblins/releases" target="_blank">Download</a>
             </div>
           </div>
 
@@ -256,8 +331,8 @@
           <h1>Jus<span>Browse</span></h1>
           <p>A privacy-first Android browser featuring advanced fingerprinting protection, tracker blocking, and minimal memory footprint.</p>
           <div class="hbtns">
-            <a class="btn bp" href="https://github.com/shubh72010/JusBrowse/releases" target="_blank">Download APK</a>
-            <a class="btn bs" href="https://github.com/shubh72010/JusBrowse" target="_blank">GitHub</a>
+            <a class="btn bp" href="https://github.com/shubh72010/JusBrowse-GeckoView/releases" target="_blank">Download APK</a>
+            <a class="btn bs" href="https://github.com/shubh72010/JusBrowse-GeckoView" target="_blank">GitHub</a>
           </div>
         </div>
 
@@ -336,8 +411,8 @@
             <h3>JusBrowse on GitHub</h3>
             <span class="github-stars skeleton" id="stars-widget-browse">&#11088; --</span>
           </div>
-          <a class="btn bs" href="https://github.com/shubh72010/JusBrowse" target="_blank">View Repository</a>
-          <a class="btn bp" id="download-widget-browse" href="https://github.com/shubh72010/JusBrowse/releases" target="_blank">Download APK</a>
+          <a class="btn bs" href="https://github.com/shubh72010/JusBrowse-GeckoView" target="_blank">View Repository</a>
+          <a class="btn bp" id="download-widget-browse" href="https://github.com/shubh72010/JusBrowse-GeckoView/releases" target="_blank">Download APK</a>
         </div>
       </div>
 
@@ -521,6 +596,261 @@
         </div>
       </div>
 
+      <!-- ==================== ORIGIN CAMERA PAGE ==================== -->
+      <div class="page" id="page-camera">
+        <div class="hero reveal">
+          <div class="htag">Camera</div>
+          <h1>Origin<br><span>Camera</span></h1>
+          <p>A minimal camera app for fast capture and clean control. Built to stay out of the way and make opening the camera feel immediate.</p>
+          <div class="hbtns">
+            <a class="btn bp" href="https://github.com/rKyzen/Origin-Camera/releases" target="_blank">Download APK</a>
+            <a class="btn bs" href="https://github.com/rKyzen/Origin-Camera" target="_blank">GitHub</a>
+          </div>
+        </div>
+
+        <div class="page-metrics">
+          <div class="page-metric kicker">
+            <div>
+              <div class="stat-l">Live repo stats</div>
+              <div class="metric-note">Cached for 1 hour, then refreshed on next load</div>
+            </div>
+            <div class="metric-note">Stars, releases, and APK size below</div>
+          </div>
+          <div class="page-metric">
+            <div class="stat-n skeleton" id="page-stars-camera">--</div>
+            <div class="stat-l">Stars</div>
+          </div>
+          <div class="page-metric">
+            <div class="stat-n" id="page-version-camera">--</div>
+            <div class="stat-l">Releases</div>
+          </div>
+          <div class="page-metric">
+            <div class="stat-n" id="page-size-camera">--</div>
+            <div class="stat-l">APK Size</div>
+          </div>
+        </div>
+
+        <div class="hbtns" style="margin-bottom:28px;">
+          <a class="btn bs" onclick="filterReleases('Origin-Camera')">Learn More</a>
+          <a class="btn br" id="download-camera" href="https://github.com/rKyzen/Origin-Camera/releases" target="_blank">Download</a>
+        </div>
+
+        <div class="stitle">Key Features</div>
+        <div class="features">
+          <div class="feat">
+            <h3>Fast Launch</h3>
+            <p>Short path to camera open and capture.</p>
+          </div>
+          <div class="feat">
+            <h3>Minimal UI</h3>
+            <p>Controls stay compact and readable.</p>
+          </div>
+          <div class="feat">
+            <h3>Clean Output</h3>
+            <p>Designed around simple capture, not bloat.</p>
+          </div>
+        </div>
+
+        <div class="stitle">Technical Specs</div>
+        <div class="ct">
+          <table>
+            <tbody>
+              <tr><td style="width:40%">Repo</td><td>rKyzen/Origin-Camera</td></tr>
+              <tr><td>Project</td><td>Origin Camera</td></tr>
+              <tr><td>Focus</td><td>Capture-first UI</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="app-releases">
+          <div class="stitle">Recent Releases <span class="release-count" id="count-camera">--</span></div>
+          <div class="release-mini-list" id="releases-camera">
+            <div class="release-mini">
+              <div class="meta"><span class="version skeleton" style="width:80px">Loading...</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="github-widget" data-repo="rKyzen/Origin-Camera">
+          <div class="github-widget-header">
+            <h3>Origin Camera on GitHub</h3>
+            <span class="github-stars skeleton" id="stars-widget-camera">&#11088; --</span>
+          </div>
+          <a class="btn bs" href="https://github.com/rKyzen/Origin-Camera" target="_blank">View Repository</a>
+          <a class="btn bp" id="download-widget-camera" href="https://github.com/rKyzen/Origin-Camera/releases" target="_blank">Download APK</a>
+        </div>
+      </div>
+
+      <!-- ==================== ORIGIN LAUNCHER PAGE ==================== -->
+      <div class="page" id="page-launcher">
+        <div class="hero reveal">
+          <div class="htag">Launcher</div>
+          <h1>Origin<br><span>Launcher</span></h1>
+          <p>A clean home screen launcher with quick access to essentials and a lightweight feel.</p>
+          <div class="hbtns">
+            <a class="btn bp" href="https://github.com/rKyzen/Origin-Launcher/releases" target="_blank">Download APK</a>
+            <a class="btn bs" href="https://github.com/rKyzen/Origin-Launcher" target="_blank">GitHub</a>
+          </div>
+        </div>
+
+        <div class="page-metrics">
+          <div class="page-metric kicker">
+            <div>
+              <div class="stat-l">Live repo stats</div>
+              <div class="metric-note">Cached for 1 hour, then refreshed on next load</div>
+            </div>
+            <div class="metric-note">Stars, releases, and APK size below</div>
+          </div>
+          <div class="page-metric">
+            <div class="stat-n skeleton" id="page-stars-launcher">--</div>
+            <div class="stat-l">Stars</div>
+          </div>
+          <div class="page-metric">
+            <div class="stat-n" id="page-version-launcher">--</div>
+            <div class="stat-l">Releases</div>
+          </div>
+          <div class="page-metric">
+            <div class="stat-n" id="page-size-launcher">--</div>
+            <div class="stat-l">APK Size</div>
+          </div>
+        </div>
+
+        <div class="hbtns" style="margin-bottom:28px;">
+          <a class="btn bs" onclick="filterReleases('Origin-Launcher')">Learn More</a>
+          <a class="btn br" id="download-launcher" href="https://github.com/rKyzen/Origin-Launcher/releases" target="_blank">Download</a>
+        </div>
+
+        <div class="stitle">Key Features</div>
+        <div class="features">
+          <div class="feat">
+            <h3>Quick Access</h3>
+            <p>Designed to keep core apps close.</p>
+          </div>
+          <div class="feat">
+            <h3>Lightweight</h3>
+            <p>Simple structure, minimal overhead.</p>
+          </div>
+          <div class="feat">
+            <h3>Calm Layout</h3>
+            <p>Focused launcher flow without clutter.</p>
+          </div>
+        </div>
+
+        <div class="stitle">Technical Specs</div>
+        <div class="ct">
+          <table>
+            <tbody>
+              <tr><td style="width:40%">Repo</td><td>rKyzen/Origin-Launcher</td></tr>
+              <tr><td>Project</td><td>Origin Launcher</td></tr>
+              <tr><td>Focus</td><td>Home screen launcher</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="app-releases">
+          <div class="stitle">Recent Releases <span class="release-count" id="count-launcher">--</span></div>
+          <div class="release-mini-list" id="releases-launcher">
+            <div class="release-mini">
+              <div class="meta"><span class="version skeleton" style="width:80px">Loading...</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="github-widget" data-repo="rKyzen/Origin-Launcher">
+          <div class="github-widget-header">
+            <h3>Origin Launcher on GitHub</h3>
+            <span class="github-stars skeleton" id="stars-widget-launcher">&#11088; --</span>
+          </div>
+          <a class="btn bs" href="https://github.com/rKyzen/Origin-Launcher" target="_blank">View Repository</a>
+          <a class="btn bp" id="download-widget-launcher" href="https://github.com/rKyzen/Origin-Launcher/releases" target="_blank">Download APK</a>
+        </div>
+      </div>
+
+      <!-- ==================== JUSPLAYER PAGE ==================== -->
+      <div class="page" id="page-player">
+        <div class="hero reveal">
+          <div class="htag">Music Player</div>
+          <h1>Jus<span>Player</span></h1>
+          <p>Greeny Goblins is the codename; JusPlayer is the product name. A music player shaped around a simple library and direct playback.</p>
+          <div class="hbtns">
+            <a class="btn bp" href="https://github.com/shubh72010/Greeny-Goblins/releases" target="_blank">Download APK</a>
+            <a class="btn bs" href="https://github.com/shubh72010/Greeny-Goblins" target="_blank">GitHub</a>
+          </div>
+        </div>
+
+        <div class="page-metrics">
+          <div class="page-metric kicker">
+            <div>
+              <div class="stat-l">Live repo stats</div>
+              <div class="metric-note">Cached for 1 hour, then refreshed on next load</div>
+            </div>
+            <div class="metric-note">Stars, releases, and APK size below</div>
+          </div>
+          <div class="page-metric">
+            <div class="stat-n skeleton" id="page-stars-player">--</div>
+            <div class="stat-l">Stars</div>
+          </div>
+          <div class="page-metric">
+            <div class="stat-n" id="page-version-player">--</div>
+            <div class="stat-l">Releases</div>
+          </div>
+          <div class="page-metric">
+            <div class="stat-n" id="page-size-player">--</div>
+            <div class="stat-l">APK Size</div>
+          </div>
+        </div>
+
+        <div class="hbtns" style="margin-bottom:28px;">
+          <a class="btn bs" onclick="filterReleases('JusPlayer')">Learn More</a>
+          <a class="btn br" id="download-player" href="https://github.com/shubh72010/Greeny-Goblins/releases" target="_blank">Download</a>
+        </div>
+
+        <div class="stitle">Key Features</div>
+        <div class="features">
+          <div class="feat">
+            <h3>Simple Library</h3>
+            <p>Built to keep albums and tracks easy to reach.</p>
+          </div>
+          <div class="feat">
+            <h3>Direct Playback</h3>
+            <p>Playback-first layout with low friction.</p>
+          </div>
+          <div class="feat">
+            <h3>Codename Track</h3>
+            <p>Greeny Goblins stays as the repo codename.</p>
+          </div>
+        </div>
+
+        <div class="stitle">Technical Specs</div>
+        <div class="ct">
+          <table>
+            <tbody>
+              <tr><td style="width:40%">Repo</td><td>shubh72010/Greeny-Goblins</td></tr>
+              <tr><td>Product</td><td>JusPlayer</td></tr>
+              <tr><td>Codename</td><td>Greeny Goblins</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="app-releases">
+          <div class="stitle">Recent Releases <span class="release-count" id="count-player">--</span></div>
+          <div class="release-mini-list" id="releases-player">
+            <div class="release-mini">
+              <div class="meta"><span class="version skeleton" style="width:80px">Loading...</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="github-widget" data-repo="shubh72010/Greeny-Goblins">
+          <div class="github-widget-header">
+            <h3>JusPlayer on GitHub</h3>
+            <span class="github-stars skeleton" id="stars-widget-player">&#11088; --</span>
+          </div>
+          <a class="btn bs" href="https://github.com/shubh72010/Greeny-Goblins" target="_blank">View Repository</a>
+          <a class="btn bp" id="download-widget-player" href="https://github.com/shubh72010/Greeny-Goblins/releases" target="_blank">Download APK</a>
+        </div>
+      </div>
+
       <!-- ==================== RELEASES PAGE ==================== -->
       <div class="page" id="page-releases">
         <div class="stitle">All Releases <span class="release-count" id="total-release-count">--</span>
@@ -532,7 +862,7 @@
 
         <div class="filter-tabs" id="filter-tabs">
           <div class="filter-tab active" data-filter="all" onclick="filterReleases('all')">All <span class="count" id="count-all">--</span></div>
-          <div class="filter-tab" data-filter="JusBrowse" onclick="filterReleases('JusBrowse')">JusBrowse <span class="count" id="count-JusBrowse">--</span></div>
+          <div class="filter-tab" data-filter="JusBrowse-GeckoView" onclick="filterReleases('JusBrowse-GeckoView')">JusBrowse <span class="count" id="count-JusBrowse-GeckoView">--</span></div>
           <div class="filter-tab" data-filter="JusChatz" onclick="filterReleases('JusChatz')">JusChatz <span class="count" id="count-JusChatz">--</span></div>
           <div class="filter-tab" data-filter="DotNotes" onclick="filterReleases('DotNotes')">DotNotes <span class="count" id="count-DotNotes">--</span></div>
         </div>

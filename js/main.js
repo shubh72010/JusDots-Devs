@@ -251,9 +251,12 @@ document.addEventListener('keydown', function (e) {
 
   var CACHE_TTL = 3600000;
   var repos = [
-    { owner: 'shubh72010', repo: 'JusBrowse', id: 'browse' },
+    { owner: 'shubh72010', repo: 'JusBrowse-GeckoView', id: 'browse' },
     { owner: 'R37BGXRPG', repo: 'JusChatz_by_JusDots', id: 'chat' },
-    { owner: 'shubh72010', repo: 'DotNotes', id: 'notes' }
+    { owner: 'shubh72010', repo: 'DotNotes', id: 'notes' },
+    { owner: 'rKyzen', repo: 'Origin-Camera', id: 'camera' },
+    { owner: 'rKyzen', repo: 'Origin-Launcher', id: 'launcher' },
+    { owner: 'shubh72010', repo: 'Greeny-Goblins', id: 'player' }
   ];
 
   var globalReleases = [];
@@ -267,12 +270,12 @@ document.addEventListener('keydown', function (e) {
       var cached = localStorage.getItem('github_' + key);
       if (!cached) return null;
       var data = JSON.parse(cached);
-      if (Date.now() > data.expiry) {
-        localStorage.removeItem('github_' + key);
-        return null;
+      if (Date.now() > data.expiresAt) {
+        console.log('[GitHub API] Cache stale for:', key);
+        return { value: data.value, stale: true, cachedAt: data.cachedAt, expiresAt: data.expiresAt };
       }
       console.log('[GitHub API] Cache hit for:', key);
-      return data.value;
+      return { value: data.value, stale: false, cachedAt: data.cachedAt, expiresAt: data.expiresAt };
     } catch (e) {
       console.error('[GitHub API] Cache error:', e);
       return null;
@@ -281,7 +284,11 @@ document.addEventListener('keydown', function (e) {
 
   function setCache(key, value) {
     try {
-      localStorage.setItem('github_' + key, JSON.stringify({ value: value, expiry: Date.now() + CACHE_TTL }));
+      localStorage.setItem('github_' + key, JSON.stringify({
+        value: value,
+        cachedAt: Date.now(),
+        expiresAt: Date.now() + CACHE_TTL
+      }));
       console.log('[GitHub API] Cached:', key);
     } catch (e) {
       console.error('[GitHub API] Cache write error:', e);
@@ -360,8 +367,35 @@ document.addEventListener('keydown', function (e) {
       if (apkUrl) downloadEl.href = apkUrl;
     }
 
-    var containerId = repo.id === 'browse' ? 'releases-browse' : repo.id === 'chat' ? 'releases-chat' : 'releases-notes';
+    var containerId = repo.id === 'browse' ? 'releases-browse' :
+      repo.id === 'chat' ? 'releases-chat' :
+      repo.id === 'notes' ? 'releases-notes' :
+      repo.id === 'camera' ? 'releases-camera' :
+      repo.id === 'launcher' ? 'releases-launcher' :
+      repo.id === 'player' ? 'releases-player' : null;
     renderAppReleases(data.releases, containerId);
+  }
+
+  function updatePageStats(repo, data) {
+    var starsEl = document.getElementById('page-stars-' + repo.id);
+    var versionEl = document.getElementById('page-version-' + repo.id);
+    var sizeEl = document.getElementById('page-size-' + repo.id);
+
+    if (starsEl) {
+      starsEl.textContent = formatNumber(data.stars);
+      starsEl.classList.remove('skeleton');
+    }
+
+    if (versionEl && data.latestRelease) {
+      versionEl.textContent = data.latestRelease.tag_name ? data.latestRelease.tag_name.replace(/^v/, '') : '--';
+    }
+
+    if (sizeEl && data.latestRelease) {
+      var apk = data.latestRelease.assets && data.latestRelease.assets.find(function (a) { return a.name && a.name.toLowerCase().endsWith('.apk'); });
+      if (apk && apk.size) {
+        sizeEl.textContent = '~' + (apk.size / (1024 * 1024)).toFixed(1) + 'MB';
+      }
+    }
   }
 
   function renderAppReleases(releases, containerId) {
@@ -393,15 +427,18 @@ document.addEventListener('keydown', function (e) {
   function updateCounts() {
     console.log('[GitHub API] Updating counts, total releases:', globalReleases.length);
 
-    var counts = { all: globalReleases.length, JusBrowse: 0, JusChatz: 0, DotNotes: 0 };
+    var counts = { all: globalReleases.length, 'JusBrowse-GeckoView': 0, JusChatz: 0, DotNotes: 0, 'Origin-Camera': 0, 'Origin-Launcher': 0, JusPlayer: 0 };
 
     globalReleases.forEach(function (r) {
-      if (r.repo === 'JusBrowse') counts.JusBrowse++;
+      if (r.repo === 'JusBrowse-GeckoView') counts['JusBrowse-GeckoView']++;
       else if (r.repo === 'JusChatz_by_JusDots') counts.JusChatz++;
       else if (r.repo === 'DotNotes') counts.DotNotes++;
+      else if (r.repo === 'Origin-Camera') counts['Origin-Camera']++;
+      else if (r.repo === 'Origin-Launcher') counts['Origin-Launcher']++;
+      else if (r.repo === 'Greeny-Goblins') counts.JusPlayer++;
     });
 
-    ['all', 'JusBrowse', 'JusChatz', 'DotNotes'].forEach(function (filter) {
+    ['all', 'JusBrowse-GeckoView', 'JusChatz', 'DotNotes', 'Origin-Camera', 'Origin-Launcher', 'JusPlayer'].forEach(function (filter) {
       var el = document.getElementById('count-' + filter);
       if (el) el.textContent = counts[filter];
     });
@@ -409,9 +446,18 @@ document.addEventListener('keydown', function (e) {
     var totalEl = document.getElementById('total-release-count');
     if (totalEl) totalEl.textContent = counts.all;
 
-    document.getElementById('count-browse').textContent = counts.JusBrowse;
-    document.getElementById('count-chat').textContent = counts.JusChatz;
-    document.getElementById('count-notes').textContent = counts.DotNotes;
+    var countBrowse = document.getElementById('count-browse');
+    if (countBrowse) countBrowse.textContent = counts['JusBrowse-GeckoView'];
+    var countChat = document.getElementById('count-chat');
+    if (countChat) countChat.textContent = counts.JusChatz;
+    var countNotes = document.getElementById('count-notes');
+    if (countNotes) countNotes.textContent = counts.DotNotes;
+    var countCamera = document.getElementById('count-camera');
+    if (countCamera) countCamera.textContent = counts['Origin-Camera'];
+    var countLauncher = document.getElementById('count-launcher');
+    if (countLauncher) countLauncher.textContent = counts['Origin-Launcher'];
+    var countPlayer = document.getElementById('count-player');
+    if (countPlayer) countPlayer.textContent = counts.JusPlayer;
   }
 
   function applyFiltersAndRender() {
@@ -426,9 +472,12 @@ document.addEventListener('keydown', function (e) {
     var filtered = globalReleases.filter(function (r) {
       if (currentFilter !== 'all') {
         var repoMatch = false;
-        if (currentFilter === 'JusBrowse' && r.repo === 'JusBrowse') repoMatch = true;
+        if (currentFilter === 'JusBrowse-GeckoView' && r.repo === 'JusBrowse-GeckoView') repoMatch = true;
         if (currentFilter === 'JusChatz' && r.repo === 'JusChatz_by_JusDots') repoMatch = true;
         if (currentFilter === 'DotNotes' && r.repo === 'DotNotes') repoMatch = true;
+        if (currentFilter === 'Origin-Camera' && r.repo === 'Origin-Camera') repoMatch = true;
+        if (currentFilter === 'Origin-Launcher' && r.repo === 'Origin-Launcher') repoMatch = true;
+        if (currentFilter === 'JusPlayer' && r.repo === 'Greeny-Goblins') repoMatch = true;
         if (!repoMatch) return false;
       }
 
@@ -513,11 +562,12 @@ document.addEventListener('keydown', function (e) {
     var cacheKey = repo.owner + '_' + repo.repo;
     var cached = getCache(cacheKey);
 
-    if (cached) {
+    if (cached && !cached.stale) {
       console.log('[GitHub API] Using cached data for:', repo.repo);
-      updateAppCard(repo, cached);
-      updateWidget(repo, cached);
-      return cached;
+      updateAppCard(repo, cached.value);
+      updateWidget(repo, cached.value);
+      updatePageStats(repo, cached.value);
+      return cached.value;
     }
 
     try {
@@ -541,15 +591,17 @@ document.addEventListener('keydown', function (e) {
 
       updateAppCard(repo, data);
       updateWidget(repo, data);
+      updatePageStats(repo, data);
 
       return data;
     } catch (e) {
       console.error('[GitHub API] Error fetching', repo.repo, ':', e);
       if (cached) {
-        updateAppCard(repo, cached);
-        updateWidget(repo, cached);
+        updateAppCard(repo, cached.value);
+        updateWidget(repo, cached.value);
+        updatePageStats(repo, cached.value);
       }
-      return cached;
+      return cached ? cached.value : null;
     }
   }
 
